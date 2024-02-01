@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfmnvh7fn6avc"]
+
+[ext_resource type="Texture2D" uid="uid://cyc7s1e0yu5th" path="res://Assets/Characters/PapaT.png" id="1_p6dtd"]
+[ext_resource type="Script" path="res://PapaTMainChar.gd" id="1_pyuuv"]
+
+[node name="PapaT" type="CharacterBody2D" groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_pyuuv")
+metadata/_edit_vertical_guides_ = [-67.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.00001, 13)
+scale = Vector2(0.363764, 0.351206)
+texture = ExtResource("1_p6dtd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-147, -198)
+scale = Vector2(2.2739, 2.36812)
+polygon = PackedVector2Array(35, 43, 47, 36, 60, 33, 68, 33, 76, 37, 82, 51, 103, 57, 104, 60, 101, 63, 95, 66, 89, 67, 92, 94, 95, 99, 97, 108, 97, 116, 95, 126, 92, 136, 86, 144, 80, 146, 76, 146, 69, 145, 57, 138, 49, 130, 44, 122, 40, 111, 38, 100, 37, 94, 38, 92, 34, 76, 32, 79, 29, 81, 25, 81, 20, 80, 18, 79, 18, 76, 20, 73, 23, 70, 27, 67, 33, 63, 35, 62)

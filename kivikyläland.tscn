@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwcnq84t0llm6"]
+
+[ext_resource type="Script" path="res://kivikyläland.gd" id="1_f8oof"]
+[ext_resource type="PackedScene" uid="uid://bfmnvh7fn6avc" path="res://player.tscn" id="2_d8r7w"]
+
+[node name="Kivikyläland" type="Node2D"]
+script = ExtResource("1_f8oof")
+
+[node name="PapaT" parent="." instance=ExtResource("2_d8r7w")]
+position = Vector2(1001, 524)
+
+[node name="SpawnPosition" type="Marker2D" parent="."]
+position = Vector2(150, 540)
