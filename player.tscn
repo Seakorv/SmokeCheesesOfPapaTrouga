@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfmnvh7fn6avc"]
 
 [ext_resource type="Texture2D" uid="uid://cyc7s1e0yu5th" path="res://Assets/Characters/PapaT.png" id="1_p6dtd"]
-[ext_resource type="Script" path="res://PapaTMainChar.gd" id="1_pyuuv"]
+[ext_resource type="Script" path="res://Scripts/PapaTMainChar.gd" id="1_pyuuv"]
 
 [node name="PapaT" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
