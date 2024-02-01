@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfmnvh7fn6avc"]
+[gd_scene load_steps=4 format=3 uid="uid://bfmnvh7fn6avc"]
 
 [ext_resource type="Texture2D" uid="uid://cyc7s1e0yu5th" path="res://Assets/Characters/PapaT.png" id="1_p6dtd"]
 [ext_resource type="Script" path="res://Scripts/PapaTMainChar.gd" id="1_pyuuv"]
+[ext_resource type="Texture2D" uid="uid://x3dkwwfxvmpq" path="res://Assets/Characters/pepeMake.png" id="3_xn5u2"]
 
 [node name="PapaT" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
@@ -17,3 +18,11 @@ texture = ExtResource("1_p6dtd")
 position = Vector2(-147, -198)
 scale = Vector2(2.2739, 2.36812)
 polygon = PackedVector2Array(35, 43, 47, 36, 60, 33, 68, 33, 76, 37, 82, 51, 103, 57, 104, 60, 101, 63, 95, 66, 89, 67, 92, 94, 95, 99, 97, 108, 97, 116, 95, 126, 92, 136, 86, 144, 80, 146, 76, 146, 69, 145, 57, 138, 49, 130, 44, 122, 40, 111, 38, 100, 37, 94, 38, 92, 34, 76, 32, 79, 29, 81, 25, 81, 20, 80, 18, 79, 18, 76, 20, 73, 23, 70, 27, 67, 33, 63, 35, 62)
+
+[node name="PepeMake" type="Sprite2D" parent="."]
+position = Vector2(62.5806, 135.5)
+scale = Vector2(0.0551538, 0.0551538)
+texture = ExtResource("3_xn5u2")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(131, 136)

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqmx43sas0qov"]
+
+[ext_resource type="Script" path="res://Scripts/gee_bullet.gd" id="1_bqas3"]
+[ext_resource type="Texture2D" uid="uid://bu3ptgxbr77p1" path="res://Assets/Projectiles/GeePNG.png" id="1_d2wg1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5g1v"]
+radius = 13.1404
+height = 38.4675
+
+[node name="GeeBullet" type="Area2D"]
+script = ExtResource("1_bqas3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.0615431, 0.0626749)
+texture = ExtResource("1_d2wg1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6.17259e-09, 1)
+rotation = -0.169723
+scale = Vector2(1.33005, 1.33005)
+shape = SubResource("CapsuleShape2D_l5g1v")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-28, 1)
+scale = Vector2(0.375, 1.77795)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
