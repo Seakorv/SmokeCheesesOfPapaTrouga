@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3jwrnmenllmx"]
+
+[ext_resource type="Texture2D" uid="uid://iky3ngsarn80" path="res://Assets/Food/LihaPinc.png" id="1_k6pj8"]
+[ext_resource type="Script" path="res://Scripts/food.gd" id="1_yqy3o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha7ql"]
+radius = 30.5941
+
+[node name="Food" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_yqy3o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.38419e-07, 1)
+scale = Vector2(0.135569, 0.135569)
+texture = ExtResource("1_k6pj8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ha7ql")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(51, 2)
+scale = Vector2(0.525, 3.325)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
