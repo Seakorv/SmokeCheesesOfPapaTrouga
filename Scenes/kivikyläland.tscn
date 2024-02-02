@@ -1,12 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwcnq84t0llm6"]
+[gd_scene load_steps=10 format=3 uid="uid://cwcnq84t0llm6"]
 
 [ext_resource type="Script" path="res://Scripts/kivikyläland.gd" id="1_f8oof"]
 [ext_resource type="PackedScene" uid="uid://bfmnvh7fn6avc" path="res://Scenes/player.tscn" id="2_d8r7w"]
-[ext_resource type="PackedScene" uid="uid://d3jwrnmenllmx" path="res://Scenes/food.tscn" id="3_14xfy"]
-[ext_resource type="PackedScene" uid="uid://c7yx4xtle6kax" path="res://Scenes/badFood.tscn" id="4_tp15b"]
+[ext_resource type="PackedScene" uid="uid://cdaku1ebio4oq" path="res://Scenes/olives.tscn" id="2_va0ts"]
+[ext_resource type="PackedScene" uid="uid://cd0jv0i72ryg4" path="res://Scenes/jelly_onions.tscn" id="3_rwdky"]
+[ext_resource type="PackedScene" uid="uid://clluqfx8ffim2" path="res://Scenes/meatball.tscn" id="4_4j3as"]
+[ext_resource type="PackedScene" uid="uid://byxojjur8r15t" path="res://Scenes/wieners.tscn" id="5_ixm6y"]
+[ext_resource type="PackedScene" uid="uid://d4iyntemx3mq4" path="res://Scenes/kebab.tscn" id="6_rbx6j"]
+[ext_resource type="PackedScene" uid="uid://o6vcn2416phu" path="res://Scenes/mandarin.tscn" id="7_cb03f"]
+[ext_resource type="PackedScene" uid="uid://bgugebki5dji7" path="res://Scenes/golden_meatball.tscn" id="8_biju8"]
 
 [node name="Kivikyläland" type="Node2D"]
+rotation = -0.000465051
 script = ExtResource("1_f8oof")
+foodScenes = Array[PackedScene]([ExtResource("2_va0ts"), ExtResource("3_rwdky"), ExtResource("4_4j3as"), ExtResource("5_ixm6y"), ExtResource("6_rbx6j"), ExtResource("7_cb03f"), ExtResource("8_biju8")])
+
+[node name="foodSpawnTimerOne" type="Timer" parent="."]
+autostart = true
 
 [node name="PapaT" parent="." instance=ExtResource("2_d8r7w")]
 position = Vector2(149, 532)
@@ -16,9 +26,7 @@ position = Vector2(150, 540)
 
 [node name="PepeMakeAse" type="Node2D" parent="."]
 
-[node name="Food" parent="." instance=ExtResource("3_14xfy")]
-position = Vector2(1482, 605)
+[node name="FoodContainer" type="Node2D" parent="."]
 
-[node name="badFood" parent="." instance=ExtResource("4_tp15b")]
-position = Vector2(973, 598)
-damage = -5
+[connection signal="timeout" from="foodSpawnTimerOne" to="." method="_on_food_spawn_timer_one_timeout"]
+[connection signal="timeout" from="foodSpawnTimerOne" to="." method="_on_bad_food_spawn_timer_timeout"]

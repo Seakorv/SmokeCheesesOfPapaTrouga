@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://byxojjur8r15t"]
+
+[ext_resource type="PackedScene" uid="uid://dc5e2nna5hhpb" path="res://Scenes/good_food.tscn" id="1_4vwln"]
+[ext_resource type="Texture2D" uid="uid://cwpbfdiyafk42" path="res://Assets/Food/nakit.png" id="2_rmkec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hxjr"]
+size = Vector2(77.6433, 39.1998)
+
+[node name="Wieners" instance=ExtResource("1_4vwln")]
+speed = 400
+damage = 5
+points = 8
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_rmkec")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.0262803, -1.32633)
+rotation = 0.31347
+shape = SubResource("RectangleShape2D_5hxjr")

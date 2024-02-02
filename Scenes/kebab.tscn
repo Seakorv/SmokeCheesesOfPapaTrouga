@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4iyntemx3mq4"]
+
+[ext_resource type="PackedScene" uid="uid://dc5e2nna5hhpb" path="res://Scenes/good_food.tscn" id="1_6k0vy"]
+[ext_resource type="Texture2D" uid="uid://df7eol5o3e6kf" path="res://Assets/Food/kebabPNG.png" id="2_1bbvm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p5iq5"]
+radius = 38.0
+height = 154.0
+
+[node name="Kebab" instance=ExtResource("1_6k0vy")]
+speed = 300
+damage = 10
+points = 50
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_1bbvm")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_p5iq5")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(60, 0)
+scale = Vector2(0.525, 5.5125)

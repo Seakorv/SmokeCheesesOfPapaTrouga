@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdaku1ebio4oq"]
+
+[ext_resource type="PackedScene" uid="uid://c7yx4xtle6kax" path="res://Scenes/badFood.tscn" id="1_ckq3a"]
+
+[node name="Olives" instance=ExtResource("1_ckq3a")]
+damage = -2
+points = -10

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://o6vcn2416phu"]
+
+[ext_resource type="PackedScene" uid="uid://dc5e2nna5hhpb" path="res://Scenes/good_food.tscn" id="1_h8pyr"]
+[ext_resource type="Texture2D" uid="uid://dn5b2ys8gvcnj" path="res://Assets/Food/mandaR.png" id="2_yjw7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyn4g"]
+size = Vector2(102, 54)
+
+[node name="Mandarin" instance=ExtResource("1_h8pyr")]
+speed = 800
+damage = 2
+points = 10
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_yjw7i")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-1, 5)
+shape = SubResource("RectangleShape2D_qyn4g")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(71, -2.38419e-07)
