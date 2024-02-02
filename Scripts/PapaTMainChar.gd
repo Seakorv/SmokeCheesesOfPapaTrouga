@@ -5,8 +5,11 @@ signal pepeM_shot(gee_scene, location)
 const SPEED = 1000.0
 
 @onready var muzzle = $Muzzle
+@onready var healthbar = $hpBar
+## Player health
+@export var maxHealth = 10
+var health = maxHealth
 
-var health = 10
 var gee_scene = preload("res://Scenes/gee_bullet.tscn")
 
 func _process(delta):
@@ -16,7 +19,8 @@ func _process(delta):
 func _physics_process(delta):
 
 	#creating the health bar
-
+	update_health()
+	
 	# Movement with vector2
 	var direction = Vector2(0, Input.get_axis("move_up", "move_down"))
 	velocity = direction * SPEED
@@ -24,6 +28,11 @@ func _physics_process(delta):
 	
 	#restricting player movement into the screen
 	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
+
+
+func update_health():
+	healthbar.value = health
+
 
 func shoot():
 	pepeM_shot.emit(gee_scene, muzzle.global_position)

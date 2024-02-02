@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7yx4xtle6kax"]
+
+[ext_resource type="PackedScene" uid="uid://d3jwrnmenllmx" path="res://Scenes/food.tscn" id="1_3reqk"]
+[ext_resource type="Texture2D" uid="uid://dmtjc08l8tunr" path="res://Assets/Food/olivs.png" id="2_1kl22"]
+
+[node name="badFood" instance=ExtResource("1_3reqk")]
+speed = 600
+goodOrBad = "bad"
+damage = -10
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-1.19209e-07, 0)
+scale = Vector2(0.128928, 0.164041)
+texture = ExtResource("2_1kl22")

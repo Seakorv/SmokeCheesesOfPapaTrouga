@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwcnq84t0llm6"]
+[gd_scene load_steps=5 format=3 uid="uid://cwcnq84t0llm6"]
 
 [ext_resource type="Script" path="res://Scripts/kivikyläland.gd" id="1_f8oof"]
 [ext_resource type="PackedScene" uid="uid://bfmnvh7fn6avc" path="res://Scenes/player.tscn" id="2_d8r7w"]
-[ext_resource type="PackedScene" uid="uid://d3jwrnmenllmx" path="res://Scripts/food.tscn" id="3_14xfy"]
+[ext_resource type="PackedScene" uid="uid://d3jwrnmenllmx" path="res://Scenes/food.tscn" id="3_14xfy"]
+[ext_resource type="PackedScene" uid="uid://c7yx4xtle6kax" path="res://Scenes/badFood.tscn" id="4_tp15b"]
 
 [node name="Kivikyläland" type="Node2D"]
 script = ExtResource("1_f8oof")
@@ -16,4 +17,8 @@ position = Vector2(150, 540)
 [node name="PepeMakeAse" type="Node2D" parent="."]
 
 [node name="Food" parent="." instance=ExtResource("3_14xfy")]
-position = Vector2(1705, 569)
+position = Vector2(1482, 605)
+
+[node name="badFood" parent="." instance=ExtResource("4_tp15b")]
+position = Vector2(973, 598)
+damage = -5
