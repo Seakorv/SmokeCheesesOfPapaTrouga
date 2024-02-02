@@ -38,7 +38,7 @@ func _on_food_spawn_timer_one_timeout():
 	food_container.add_child(food)
 
 
-## Giving an int from one to seven, which food will be chosen. Give percentages in parameters. Don't exeed 100 lol
+## Giving an int from zero to six, which food will be chosen. Give percentages in parameters. Don't exeed 100 lol
 func choose_not_so_randomly_from_seven(olives: int, jelly_onions: int, meatballs: int, wieners: int, kebab: int, mandarin: int, golden_meatball: int):
 	var chosen = 0
 	var chooser = randi_range(0, 100)
