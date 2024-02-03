@@ -42,7 +42,7 @@ func _on_food_spawn_timer_one_timeout():
 	##test
 	#if how_many_food == 0:
 	#	spawn_boss(2)
-	#	timer1.stop()
+	#   	timer1.stop()
 	##
 	how_many_food += 1
 	spawn_food(30, 10, 30, 15, 8, 6, 1, 1)

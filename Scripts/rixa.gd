@@ -1,7 +1,6 @@
 class_name Rixa extends Boss
 
 signal jotunn_shot(jotunn_scene, location)
-signal dying_event(is_dead)
 
 @onready var shoot_timer = $ShootTimer
 @onready var jotunn_ase = $Jotunn_ase
@@ -13,7 +12,6 @@ signal dying_event(is_dead)
 @export var speed = 500
 ## How many points will boss' death give
 @export var score = 1000
-@export var tag = "Rixa"
 
 
 var jotunn_scene = preload("res://Scenes/rixa_bullet.tscn")

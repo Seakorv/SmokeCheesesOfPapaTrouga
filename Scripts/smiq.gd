@@ -1,6 +1,5 @@
 class_name Smiq extends Boss
 
-signal dying_event(is_dead)
 signal vex_shot(vex_scene, location)
 
 @onready var shoot_timer = $ShootTimer

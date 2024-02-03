@@ -17,7 +17,7 @@ texture = ExtResource("2_60mm6")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(17, -166, 53, -152, 82, -131, 99, -105, 109, -72, 108, -60, 77, 55, 91, 80, 37, 161, -40, 168, -101, 140, -112, 102, -91, 49, -82, -86, -73, -121, -59, -138, -38, -151, -10, -162)
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Jotunn_ase" type="Sprite2D" parent="."]
 position = Vector2(-126, 122)
 rotation = 0.0247967
 scale = Vector2(0.158849, 0.155117)

@@ -29,3 +29,6 @@ script = ExtResource("2_wwtd2")
 
 [node name="Rixa" parent="Path2D/PathFollow2D" instance=ExtResource("2_xalei")]
 rotation = 1.55719
+health = 20
+speed = 500
+score = 1000
