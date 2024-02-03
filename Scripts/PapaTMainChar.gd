@@ -34,6 +34,15 @@ func update_health():
 	healthbar.value = health
 
 
+## updating health
+func take_damage_or_heal(damage):
+	health += damage
+	if health >= maxHealth:
+		health = maxHealth
+	if health <= 0:
+		die()
+
+
 func shoot():
 	pepeM_shot.emit(gee_scene, muzzle.global_position)
 	

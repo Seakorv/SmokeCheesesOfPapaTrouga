@@ -20,3 +20,6 @@ func _on_area_entered(area):
 		queue_free()
 	if area is BossAmmo:
 		queue_free()
+	if area is Burgund_Stew:
+		area.take_damage()
+		queue_free()

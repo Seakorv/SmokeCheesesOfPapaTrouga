@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://isjfbb8y4jq6"]
+
+[ext_resource type="Script" path="res://Scripts/vex_bullet.gd" id="1_4mybd"]
+[ext_resource type="Texture2D" uid="uid://ecyfds2d8mei" path="res://Assets/Projectiles/VexKuti.png" id="1_ovfvg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft7qb"]
+size = Vector2(68, 5.75)
+
+[node name="VexBullet" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_4mybd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.139359, 0.0747127)
+texture = ExtResource("1_ovfvg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ft7qb")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(40, -5.96046e-08)
+scale = Vector2(0.15, 0.45)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

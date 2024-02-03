@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bclnl5wecvs8j"]
+
+[ext_resource type="Script" path="res://Scripts/smiq_ai.gd" id="1_h2wac"]
+[ext_resource type="Script" path="res://Scripts/PathFollow2DSmiq.gd" id="2_8c61v"]
+[ext_resource type="PackedScene" uid="uid://cqy6x364kup8y" path="res://Scenes/smiq.tscn" id="2_rurxy"]
+
+[sub_resource type="Curve2D" id="Curve2D_mp4jc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1735, 495, -376.181, 6.36396, 376.181, -6.36396, 1742, 76, 0, 0, 0, 0, 1739, 497, -348.604, 3.53553, 348.604, -3.53553, 1739, 908, 0, 0, 0, 0, 1735, 495, 0, 0, 0, 0, 1738, 497)
+}
+point_count = 6
+
+[node name="SmiqAI" type="Node2D"]
+script = ExtResource("1_h2wac")
+
+[node name="VexAse" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-108, -5)
+curve = SubResource("Curve2D_mp4jc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(1735, 495)
+rotation = -1.55409
+rotates = false
+script = ExtResource("2_8c61v")
+
+[node name="Smiq" parent="Path2D/PathFollow2D" instance=ExtResource("2_rurxy")]
+position = Vector2(2.08165e-12, 2.08165e-12)
+rotation = 1.55409
