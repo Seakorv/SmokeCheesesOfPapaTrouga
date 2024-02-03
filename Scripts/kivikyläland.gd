@@ -1,11 +1,13 @@
 extends Node2D
 
 @export var foodScenes: Array[PackedScene] = []
+@export var bossScenes: Array[PackedScene] = []
 
 @onready var player_spawn = $SpawnPosition
 @onready var pepe_make_ase = $PepeMakeAse
 @onready var timer1 = $FoodSpawnTimerOne
 @onready var food_container = $FoodContainer
+@onready var boss_container = $BossContainer
 
 var how_many_food = 0
 var player = null
@@ -36,17 +38,22 @@ func _on_food_spawn_timer_one_timeout():
 	how_many_food += 1
 	var which_food = choose_not_so_randomly_from_seven(30, 10, 30, 15, 8, 6, 1)
 	var food = foodScenes[which_food].instantiate()
-	food.speed_multiplier = 1.5
+	food.speed_multiplier = 1
 	food.global_position = Vector2(2000, randf_range(50, 1030))
 	food_container.add_child(food)
-	if how_many_food == 10:
+	if how_many_food == 20:
 		$FoodSpawnTimerOne.stop()
+		spawn_boss(0)
 		how_many_food = 0
+
+
+func spawn_boss(boss_index):
+	var boss = bossScenes[boss_index].instantiate()
+	boss_container.add_child(boss)
 
 
 ## Giving an int from zero to six, which food will be chosen. Give percentages in parameters. Don't exeed 100 lol
 func choose_not_so_randomly_from_seven(olives: int, jelly_onions: int, meatballs: int, wieners: int, kebab: int, mandarin: int, golden_meatball: int):
-	var chosen = 0
 	var chooser = randi_range(0, 100)
 	
 	var o = olives

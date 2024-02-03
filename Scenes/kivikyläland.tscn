@@ -15,6 +15,7 @@
 rotation = -0.000465051
 script = ExtResource("1_f8oof")
 foodScenes = Array[PackedScene]([ExtResource("2_va0ts"), ExtResource("3_rwdky"), ExtResource("4_4j3as"), ExtResource("5_ixm6y"), ExtResource("6_rbx6j"), ExtResource("7_cb03f"), ExtResource("8_biju8")])
+bossScenes = Array[PackedScene]([ExtResource("10_lyykh"), null, null, null])
 
 [node name="FoodSpawnTimerOne" type="Timer" parent="."]
 autostart = true
@@ -29,7 +30,7 @@ position = Vector2(150, 540)
 
 [node name="FoodContainer" type="Node2D" parent="."]
 
-[node name="RixAI" parent="." instance=ExtResource("10_lyykh")]
+[node name="BossContainer" type="Node2D" parent="."]
 
 [connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_food_spawn_timer_one_timeout"]
 [connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_bad_food_spawn_timer_timeout"]
