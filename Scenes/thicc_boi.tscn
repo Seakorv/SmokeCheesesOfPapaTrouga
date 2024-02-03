@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://4f41jkgjh2sw"]
+
+[ext_resource type="PackedScene" uid="uid://bw87wqdionhne" path="res://Scenes/veljekset_li.tscn" id="1_g3d4h"]
+[ext_resource type="Script" path="res://Scripts/thicc_boi.gd" id="2_ar0np"]
+[ext_resource type="Texture2D" uid="uid://twros23pfn7h" path="res://Assets/Characters/thiccSynthoPNG.png" id="2_o7v8x"]
+
+[node name="ThiccBoi" instance=ExtResource("1_g3d4h")]
+script = ExtResource("2_ar0np")
+damage = -5
+health = 10
+speed = 750
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.268987, 0.268987)
+texture = ExtResource("2_o7v8x")
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(13, -170, 31, -174, 42, -182, 54, -182, 67, -180, 76, -182, 85, -176, 93, -172, 107, -175, 122, -169, 128, -162, 135, -159, 142, -160, 146, -154, 144, -135, 141, -98, 139, -60, 143, -41, 142, -12, 140, -2, 132, 1, 135, 17, 130, 28, 142, 37, 144, 56, 149, 64, 145, 79, 138, 83, 128, 96, 105, 137, 95, 147, 67, 184, 47, 188, 31, 180, 18, 168, 6, 161, -5, 146, -19, 160, -50, 159, -59, 149, -78, 136, -92, 115, -94, 104, -104, 87, -121, 63, -128, 53, -145, 24, -145, 9, -136, -2, -127, -10, -123, -9, -117, -13, -110, -9, -109, -5, -101, -6, -90, 5, -88, 22, -95, 38, -78, 51, -62, 72, -38, 82, -62, 45, -62, 35, -54, 24, -43, 15, -35, 13, -27, 16, -23, 24, -19, 15, -33, -20, -32, -40, -29, -66, -17, -99, -6, -125, 3, -136, 6, -139, 5, -156, 8, -166)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

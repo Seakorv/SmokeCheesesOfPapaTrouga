@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcxooykg370tq"]
+
+[ext_resource type="PackedScene" uid="uid://chcdyoe8hbl0n" path="res://Scenes/thini_boi.tscn" id="1_3dfgl"]
+[ext_resource type="Script" path="res://Scripts/li_ai.gd" id="1_w113m"]
+[ext_resource type="PackedScene" uid="uid://4f41jkgjh2sw" path="res://Scenes/thicc_boi.tscn" id="2_45k5k"]
+
+[node name="LiAi" type="Node2D"]
+script = ExtResource("1_w113m")
+
+[node name="ThiniBoi" parent="." instance=ExtResource("1_3dfgl")]
+position = Vector2(1598, 196)
+
+[node name="ThiccBoi" parent="." instance=ExtResource("2_45k5k")]
+position = Vector2(1722, 803)
+
+[node name="ThinSpawn" type="Marker2D" parent="."]
+position = Vector2(1598, 193)
+
+[node name="ThinTeleportTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="LorezContainer" type="Node2D" parent="."]
+
+[connection signal="timeout" from="ThinTeleportTimer" to="." method="_on_thin_teleport_timer_timeout"]

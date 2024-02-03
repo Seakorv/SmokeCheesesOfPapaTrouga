@@ -7,6 +7,7 @@ extends Node2D
 @onready var pepe_make_ase = $PepeMakeAse
 @onready var timer1 = $FoodSpawnTimerOne
 @onready var timer2 = $FoodSpawnTimerTwo
+@onready var timer3 = $FoodSpawnTimerThree
 @onready var food_container = $FoodContainer
 @onready var boss_container = $BossContainer
 
@@ -21,7 +22,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	assert(player!=null)
 	player.global_position = player_spawn.global_position
-	player.pepeM_shot.connect(_on_player_gee_shot)
+	player.pepeM_shot.connect(_on_player_gee_shot)  
 
 
 func _process(delta):
@@ -42,8 +43,8 @@ func _on_food_spawn_timer_one_timeout():
 	##test
 	#if how_many_food == 0:
 	#	spawn_boss(2)
-	#   	timer1.stop()
-	##
+	#	timer1.stop()
+	# 
 	how_many_food += 1
 	spawn_food(30, 10, 30, 15, 8, 6, 1, 1)
 	if how_many_food == 10: 
@@ -65,7 +66,7 @@ func spawn_food(olives: int, jelly_onions: int, meatballs: int, wieners: int, ke
 
 ## Spawn boss by its index. 0 is burgund stew, 1 is Rixa etc.
 func spawn_boss(boss_index):
-	boss = bossScenes[boss_index].instantiate()
+	boss = bossScenes[boss_index].instantiate() 
 	boss.dying.connect(_boss_death)
 	boss_container.add_child(boss)
 	
@@ -108,8 +109,13 @@ func food_spawn_location():
 	return Vector2(2000, randf_range(50,1030))
 
 
+func timer_starter(which_timer):
+	var timers_array = [timer1, timer2, timer3]
+	timers_array[which_timer].start()
+
+
 func _on_food_spawn_timer_two_timeout():
-	how_many_food += 1
+	how_many_food += 1  
 	spawn_food(33, 12, 25, 15, 8, 6, 1, 1.1)
 	if how_many_food == 20 or how_many_food == 40: 
 		spawn_stew(1.3)
@@ -117,8 +123,25 @@ func _on_food_spawn_timer_two_timeout():
 		timer2.stop()
 		spawn_boss(2)
 		how_many_food = 0
-		
 
-func timer_starter(which_timer):
-	var timers_array = [timer1, timer2]
-	timers_array[which_timer].start()
+
+func _on_food_spawn_timer_three_timeout():
+	how_many_food += 1
+	spawn_food(35, 15, 20, 13, 8, 6, 3, 1.3)
+	if how_many_food == 20:
+		spawn_stew(1.3)
+	if how_many_food == 50:
+		for n in 2:
+			spawn_stew(1.5)
+	if how_many_food == 90:
+		for n in 3:
+			spawn_stew(1.7)
+	if how_many_food == 100:
+		timer3.stop()
+		spawn_boss(3)
+		how_many_food = 0
+
+
+
+
+

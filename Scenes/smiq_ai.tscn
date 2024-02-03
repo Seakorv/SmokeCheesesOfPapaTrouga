@@ -28,6 +28,3 @@ script = ExtResource("2_8c61v")
 [node name="Smiq" parent="Path2D/PathFollow2D" instance=ExtResource("2_rurxy")]
 position = Vector2(2.08165e-12, 2.08165e-12)
 rotation = 1.55409
-health = 40
-speed = 500
-score = 2000

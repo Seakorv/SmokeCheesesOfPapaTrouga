@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ecyfds2d8mei" path="res://Assets/Projectiles/VexKuti.png" id="1_ovfvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft7qb"]
-size = Vector2(68, 5.75)
+size = Vector2(50, 5.75)
 
 [node name="VexBullet" type="Area2D"]
 collision_layer = 16
