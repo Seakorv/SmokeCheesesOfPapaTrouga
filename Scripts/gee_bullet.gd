@@ -15,3 +15,8 @@ func _on_area_entered(area):
 	if area is Food:
 		area.die()
 		queue_free()
+	if area is Boss:
+		area.im_hurt()
+		queue_free()
+	if area is BossAmmo:
+		queue_free()

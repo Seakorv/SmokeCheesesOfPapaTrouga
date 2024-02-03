@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwcnq84t0llm6"]
+[gd_scene load_steps=11 format=3 uid="uid://cwcnq84t0llm6"]
 
 [ext_resource type="Script" path="res://Scripts/kivikyläland.gd" id="1_f8oof"]
 [ext_resource type="PackedScene" uid="uid://bfmnvh7fn6avc" path="res://Scenes/player.tscn" id="2_d8r7w"]
@@ -9,13 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://d4iyntemx3mq4" path="res://Scenes/kebab.tscn" id="6_rbx6j"]
 [ext_resource type="PackedScene" uid="uid://o6vcn2416phu" path="res://Scenes/mandarin.tscn" id="7_cb03f"]
 [ext_resource type="PackedScene" uid="uid://bgugebki5dji7" path="res://Scenes/golden_meatball.tscn" id="8_biju8"]
+[ext_resource type="PackedScene" uid="uid://cl7gef6ncucmy" path="res://Scenes/rix_ai.tscn" id="10_lyykh"]
 
 [node name="Kivikyläland" type="Node2D"]
 rotation = -0.000465051
 script = ExtResource("1_f8oof")
 foodScenes = Array[PackedScene]([ExtResource("2_va0ts"), ExtResource("3_rwdky"), ExtResource("4_4j3as"), ExtResource("5_ixm6y"), ExtResource("6_rbx6j"), ExtResource("7_cb03f"), ExtResource("8_biju8")])
 
-[node name="foodSpawnTimerOne" type="Timer" parent="."]
+[node name="FoodSpawnTimerOne" type="Timer" parent="."]
 autostart = true
 
 [node name="PapaT" parent="." instance=ExtResource("2_d8r7w")]
@@ -28,5 +29,7 @@ position = Vector2(150, 540)
 
 [node name="FoodContainer" type="Node2D" parent="."]
 
-[connection signal="timeout" from="foodSpawnTimerOne" to="." method="_on_food_spawn_timer_one_timeout"]
-[connection signal="timeout" from="foodSpawnTimerOne" to="." method="_on_bad_food_spawn_timer_timeout"]
+[node name="RixAI" parent="." instance=ExtResource("10_lyykh")]
+
+[connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_food_spawn_timer_one_timeout"]
+[connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_bad_food_spawn_timer_timeout"]

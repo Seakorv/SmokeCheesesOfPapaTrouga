@@ -4,9 +4,10 @@ extends Node2D
 
 @onready var player_spawn = $SpawnPosition
 @onready var pepe_make_ase = $PepeMakeAse
-@onready var timer1 = $foodSpawnTimerOne
+@onready var timer1 = $FoodSpawnTimerOne
 @onready var food_container = $FoodContainer
 
+var how_many_food = 0
 var player = null
 
 
@@ -32,10 +33,15 @@ func _on_player_gee_shot(gee_scene, location):
 
 ##Timer for first food spawns before Rixa
 func _on_food_spawn_timer_one_timeout():
+	how_many_food += 1
 	var which_food = choose_not_so_randomly_from_seven(30, 10, 30, 15, 8, 6, 1)
 	var food = foodScenes[which_food].instantiate()
+	food.speed_multiplier = 1.5
 	food.global_position = Vector2(2000, randf_range(50, 1030))
 	food_container.add_child(food)
+	if how_many_food == 10:
+		$FoodSpawnTimerOne.stop()
+		how_many_food = 0
 
 
 ## Giving an int from zero to six, which food will be chosen. Give percentages in parameters. Don't exeed 100 lol

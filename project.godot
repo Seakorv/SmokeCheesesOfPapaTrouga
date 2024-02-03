@@ -78,6 +78,8 @@ shoot_juuso={
 2d_physics/layer_1="papaT"
 2d_physics/layer_2="food"
 2d_physics/layer_3="papaAmmonition"
+2d_physics/layer_4="Bosses"
+2d_physics/layer_5="bossAmmonition"
 
 [rendering]
 

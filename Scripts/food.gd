@@ -8,9 +8,11 @@ class_name Food extends Area2D
 @export var damage = 0
 ## How much score does the food give?
 @export var points = 0
+## Speed variable which can be changed. Multiples the base speed. Give something like 1.5 for the value.
+@export var speed_multiplier = 1
 
 func _physics_process(delta):
-	global_position.x += -speed * delta
+	global_position.x += -(speed * speed_multiplier) * delta
 
 
 func die():
