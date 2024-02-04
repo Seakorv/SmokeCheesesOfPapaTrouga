@@ -8,7 +8,7 @@
 position = Vector2(2.08165e-12, 2.08165e-12)
 collision_layer = 8
 script = ExtResource("2_kgmih")
-health = 10
+health = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)

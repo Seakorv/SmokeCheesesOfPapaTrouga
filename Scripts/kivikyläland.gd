@@ -15,7 +15,7 @@ extends Node2D
 var how_many_food = 0
 var player = null
 var boss = null
-
+ 
 
 
 func _ready():
