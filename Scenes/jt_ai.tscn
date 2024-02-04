@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6xcifh3d6swp"]
+[gd_scene load_steps=3 format=3 uid="uid://b6xcifh3d6swp"]
 
 [ext_resource type="PackedScene" uid="uid://b04jabb3ses3s" path="res://Scenes/jt_nd.tscn" id="1_18ym5"]
 [ext_resource type="Script" path="res://Scripts/jt_ai.gd" id="1_y42fm"]
-[ext_resource type="PackedScene" uid="uid://bfmnvh7fn6avc" path="res://Scenes/player.tscn" id="3_gx8pi"]
 
 [node name="JtAi" type="Node2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -16,8 +15,5 @@ position = Vector2(1756, 540)
 
 [node name="JtEagerEdgeTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="PapaT" parent="." instance=ExtResource("3_gx8pi")]
-position = Vector2(242, 525)
 
 [connection signal="timeout" from="JtEagerEdgeTimer" to="." method="_on_jt_eager_edge_timer_timeout"]

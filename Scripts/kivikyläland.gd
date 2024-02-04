@@ -8,6 +8,7 @@ extends Node2D
 @onready var timer1 = $FoodSpawnTimerOne
 @onready var timer2 = $FoodSpawnTimerTwo
 @onready var timer3 = $FoodSpawnTimerThree
+@onready var timer4 = $FoodSpawnTimerFour
 @onready var food_container = $FoodContainer
 @onready var boss_container = $BossContainer
 
@@ -42,9 +43,10 @@ func _on_player_gee_shot(gee_scene, location):
 func _on_food_spawn_timer_one_timeout():
 	##test
 	#if how_many_food == 0:
-	#	spawn_boss(2)
+	#	spawn_boss(3)
 	#	timer1.stop()
-	# 
+	#	timer4.start()
+	## 
 	how_many_food += 1
 	spawn_food(30, 10, 30, 15, 8, 6, 1, 1)
 	if how_many_food == 10: 
@@ -110,7 +112,7 @@ func food_spawn_location():
 
 
 func timer_starter(which_timer):
-	var timers_array = [timer1, timer2, timer3]
+	var timers_array = [timer1, timer2, timer3, timer4]
 	timers_array[which_timer].start()
 
 
@@ -137,11 +139,26 @@ func _on_food_spawn_timer_three_timeout():
 		for n in 3:
 			spawn_stew(1.7)
 	if how_many_food == 100:
-		timer3.stop()
+		timer3.stop() 
 		spawn_boss(3)
 		how_many_food = 0
 
 
-
+func _on_food_spawn_timer_four_timeout():
+	how_many_food += 1
+	spawn_food(40, 20, 15, 10, 5, 7, 3, 1.6)
+	if how_many_food == 10:
+		for n in 4:
+			spawn_stew(2)
+	if how_many_food == 70:
+		for n in 5:
+			spawn_stew(2)
+	if how_many_food == 140:
+		for n in 6:
+			spawn_stew(2)
+	if how_many_food == 160:
+		timer4.stop()
+		spawn_boss(4)
+		how_many_food = 0
 
 

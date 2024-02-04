@@ -12,14 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://cl7gef6ncucmy" path="res://Scenes/rix_ai.tscn" id="10_lyykh"]
 [ext_resource type="PackedScene" uid="uid://c6a2mxdpnrkqr" path="res://Scenes/burgund_stew.tscn" id="11_55n1u"]
 [ext_resource type="PackedScene" uid="uid://bclnl5wecvs8j" path="res://Scenes/smiq_ai.tscn" id="11_ll5py"]
+[ext_resource type="PackedScene" uid="uid://b6xcifh3d6swp" path="res://Scenes/jt_ai.tscn" id="12_f6bhc"]
 [ext_resource type="PackedScene" uid="uid://dcxooykg370tq" path="res://Scenes/li_ai.tscn" id="12_o8gmn"]
-[ext_resource type="PackedScene" uid="uid://b04jabb3ses3s" path="res://Scenes/jt_nd.tscn" id="14_r4t0y"]
 
 [node name="Kivikyläland" type="Node2D"]
 rotation = -0.000465051
 script = ExtResource("1_f8oof")
 foodScenes = Array[PackedScene]([ExtResource("2_va0ts"), ExtResource("3_rwdky"), ExtResource("4_4j3as"), ExtResource("5_ixm6y"), ExtResource("6_rbx6j"), ExtResource("7_cb03f"), ExtResource("8_biju8")])
-bossScenes = Array[PackedScene]([ExtResource("11_55n1u"), ExtResource("10_lyykh"), ExtResource("11_ll5py"), ExtResource("12_o8gmn")])
+bossScenes = Array[PackedScene]([ExtResource("11_55n1u"), ExtResource("10_lyykh"), ExtResource("11_ll5py"), ExtResource("12_f6bhc"), ExtResource("12_o8gmn")])
 
 [node name="FoodSpawnTimerOne" type="Timer" parent="."]
 autostart = true
@@ -29,6 +29,9 @@ wait_time = 0.7
 
 [node name="FoodSpawnTimerThree" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="FoodSpawnTimerFour" type="Timer" parent="."]
+wait_time = 0.3
 
 [node name="PapaT" parent="." instance=ExtResource("2_d8r7w")]
 position = Vector2(149, 532)
@@ -42,10 +45,8 @@ position = Vector2(150, 540)
 
 [node name="BossContainer" type="Node2D" parent="."]
 
-[node name="Jt_nd" parent="." instance=ExtResource("14_r4t0y")]
-position = Vector2(1677.64, 766.78)
-
 [connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_bad_food_spawn_timer_timeout"]
 [connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_food_spawn_timer_one_timeout"]
 [connection signal="timeout" from="FoodSpawnTimerTwo" to="." method="_on_food_spawn_timer_two_timeout"]
 [connection signal="timeout" from="FoodSpawnTimerThree" to="." method="_on_food_spawn_timer_three_timeout"]
+[connection signal="timeout" from="FoodSpawnTimerFour" to="." method="_on_food_spawn_timer_four_timeout"]
