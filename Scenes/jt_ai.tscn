@@ -9,13 +9,12 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_y42fm")
 
 [node name="Jt_nd" parent="." instance=ExtResource("1_18ym5")]
-position = Vector2(1758, 486)
+position = Vector2(1758, 540)
 
 [node name="JtSpawn" type="Marker2D" parent="."]
-position = Vector2(1756, 489)
+position = Vector2(1756, 540)
 
 [node name="JtEagerEdgeTimer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
 
 [node name="PapaT" parent="." instance=ExtResource("3_gx8pi")]

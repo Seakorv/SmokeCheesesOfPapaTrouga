@@ -1,7 +1,7 @@
 class_name Jt extends Boss
 
 @export var health = 50
-@export var speed = 1000
+@export var speed = 3000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,7 +9,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	pass
 
 
