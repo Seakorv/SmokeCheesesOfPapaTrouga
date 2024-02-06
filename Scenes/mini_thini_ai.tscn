@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw6xrn5gswyxd"]
+
+[ext_resource type="Script" path="res://Scripts/mini_thini_ai.gd" id="1_ugnnc"]
+[ext_resource type="PackedScene" uid="uid://dsbfhbhus0cr2" path="res://Scenes/mini_thini_boi.tscn" id="2_3aoan"]
+
+[node name="MiniThiniAi" type="Node2D"]
+script = ExtResource("1_ugnnc")
+
+[node name="MiniThiniBoi" parent="." instance=ExtResource("2_3aoan")]
+position = Vector2(-837, -540)
+scale = Vector2(0.5, 0.5)
+
+[node name="ThinPortTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="LorenzContainer" type="Node2D" parent="."]
+
+[connection signal="timeout" from="ThinPortTimer" to="." method="_on_thin_port_timer_timeout"]

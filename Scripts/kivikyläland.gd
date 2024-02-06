@@ -39,14 +39,14 @@ func _on_player_gee_shot(gee_scene, location):
 	pepe_make_ase.add_child(gee)
 
 
-##Timer for first food spawns before Rixa
+#Timer for first food spawns before Rixa
 func _on_food_spawn_timer_one_timeout():
-	##test
+	#test
 	#if how_many_food == 0:
 	#	spawn_boss(3)
 	#	timer1.stop()
 	#	timer4.start()
-	## 
+	# 
 	how_many_food += 1
 	spawn_food(30, 10, 30, 15, 8, 6, 1, 1)
 	if how_many_food == 10: 
@@ -57,7 +57,7 @@ func _on_food_spawn_timer_one_timeout():
 		how_many_food = 0
 					
 
-## function for food spawn. Give percentages for food and final double is the speed multiplier to adjust food speed.
+# function for food spawn. Give percentages for food and final double is the speed multiplier to adjust food speed.
 func spawn_food(olives: int, jelly_onions: int, meatballs: int, wieners: int, kebab: int, mandarin: int, golden_meatball: int, speedmultiplier):
 	var which_food = choose_not_so_randomly_from_seven(olives, jelly_onions, meatballs, wieners, kebab, mandarin, golden_meatball)
 	var food = foodScenes[which_food].instantiate()
@@ -66,7 +66,7 @@ func spawn_food(olives: int, jelly_onions: int, meatballs: int, wieners: int, ke
 	food_container.add_child(food)
 
 
-## Spawn boss by its index. 0 is burgund stew, 1 is Rixa etc.
+# Spawn boss by its index. 0 is burgund stew, 1 is Rixa etc.
 func spawn_boss(boss_index):
 	boss = bossScenes[boss_index].instantiate() 
 	boss.dying.connect(_boss_death)
@@ -78,7 +78,7 @@ func _boss_death(is_dead):
 		timer_starter(boss.get_index()+1)
 
 
-## Giving an int from zero to six, which food will be chosen. Give percentages in parameters. Don't exeed 100 lol
+# Giving an int from zero to six, which food will be chosen. Give percentages in parameters. Don't exeed 100 lol
 func choose_not_so_randomly_from_seven(olives: int, jelly_onions: int, meatballs: int, wieners: int, kebab: int, mandarin: int, golden_meatball: int):
 	var chooser = randi_range(0, 100)
 	
@@ -99,7 +99,7 @@ func choose_not_so_randomly_from_seven(olives: int, jelly_onions: int, meatballs
 	if chooser > m and chooser <= gmb: return 6
 	
 
-## function to spawn burgund stew
+# function to spawn burgund stew
 func spawn_stew(how_fast):
 	var stew = bossScenes[0].instantiate()
 	stew.speed_multiplier = how_fast

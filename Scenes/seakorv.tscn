@@ -19,9 +19,14 @@ position = Vector2(-315, 54)
 position = Vector2(-12, -212)
 
 [node name="OliveTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.08
 autostart = true
 
-[node name="Shoot2timer" type="Timer" parent="."]
+[node name="BurgundShootTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="BurgundMuzzle" type="Marker2D" parent="."]
+position = Vector2(-70, -85)
 
 [connection signal="timeout" from="OliveTimer" to="." method="_on_olive_timer_timeout"]
+[connection signal="timeout" from="BurgundShootTimer" to="." method="_on_burgund_shoot_timer_timeout"]

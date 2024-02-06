@@ -1,16 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5otqsp6rdtx4"]
+[gd_scene load_steps=6 format=3 uid="uid://c5otqsp6rdtx4"]
 
 [ext_resource type="Script" path="res://Scripts/seakorv_phase_one_ai.gd" id="1_6lw13"]
+[ext_resource type="PackedScene" uid="uid://bw6xrn5gswyxd" path="res://Scenes/mini_thini_ai.tscn" id="2_5ouf7"]
 [ext_resource type="PackedScene" uid="uid://u244h2j2y1vq" path="res://Scenes/seakorv.tscn" id="2_6aagc"]
+[ext_resource type="Script" path="res://Scripts/KorvPathPhaseOne.gd" id="3_rry3m"]
+
+[sub_resource type="Curve2D" id="Curve2D_gu4fc"]
+_data = {
+"points": PackedVector2Array(25.2594, 167.141, -25.2594, -167.141, 1550, 600, -96.5317, 7.296, 96.5317, -7.296, 1684, 97, 85.6746, 25.1984, -85.6746, -25.1984, 1684, 1006, 0, 0, 0, 0, 1523, 550, -32.5514, 12.9083, 32.5514, -12.9083, 1833, 156, -92.878, 16.0981, 92.878, -16.0981, 1797, 631, 91.4807, -96.5317, -91.4807, 96.5317, 1539, 123, 0, 0, 0, 0, 1679, 466, -21.3268, -65.664, 21.3268, 65.664, 1679, 467, 71.3208, 193.912, -71.3208, -193.912, 1550, 600)
+}
+point_count = 10
 
 [node name="SeakorvPhaseOneAi" type="Node2D"]
 script = ExtResource("1_6lw13")
-
-[node name="Seakorv" parent="." instance=ExtResource("2_6aagc")]
-position = Vector2(1560, 593)
+mini_boss_scenes = Array[PackedScene]([ExtResource("2_5ouf7"), null])
 
 [node name="Olive_container" type="Node2D" parent="."]
 
-[node name="TimerBasedMovement" type="Timer" parent="."]
+[node name="MiniBossContainer" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
 
-[connection signal="timeout" from="TimerBasedMovement" to="." method="_on_timer_based_movement_timeout"]
+[node name="SeakorvSpawn" type="Marker2D" parent="."]
+position = Vector2(1550, 600)
+
+[node name="TeleportTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ModulatorTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="ThinSpawnerTimer" type="Timer" parent="."]
+
+[node name="ThiniSpawn" type="Marker2D" parent="."]
+position = Vector2(1300, 426)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.973, 1)
+curve = SubResource("Curve2D_gu4fc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(1550, 600)
+rotates = false
+script = ExtResource("3_rry3m")
+speed = 0.1
+
+[node name="Seakorv" parent="Path2D/PathFollow2D" instance=ExtResource("2_6aagc")]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(1.24945, 1.21687)
+
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_timer_based_movement_timeout"]
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
+[connection signal="timeout" from="ModulatorTimer" to="." method="_on_modulator_timer_timeout"]
+[connection signal="timeout" from="ThinSpawnerTimer" to="." method="_on_thin_spawner_timer_timeout"]
