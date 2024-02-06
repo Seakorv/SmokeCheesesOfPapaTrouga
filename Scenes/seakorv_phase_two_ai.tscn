@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://rdmaiom0dxob"]
+
+[ext_resource type="PackedScene" uid="uid://c5otqsp6rdtx4" path="res://Scenes/seakorv_phase_one_ai.tscn" id="1_mtdxf"]
+[ext_resource type="Script" path="res://Scripts/seakorv_phase_two_ai.gd" id="2_6cgn8"]
+[ext_resource type="Texture2D" uid="uid://d01ydwya474qp" path="res://Assets/Characters/KorvRed.png" id="3_m47my"]
+[ext_resource type="Texture2D" uid="uid://c1huu0qtrwmil" path="res://Assets/Characters/otherhalf.png" id="4_up3c5"]
+
+[node name="SeakorvPhaseOneAi" instance=ExtResource("1_mtdxf")]
+script = ExtResource("2_6cgn8")
+how_many_ports = 8
+new_attac_place_for_p2 = true
+
+[node name="PathFollow2D" parent="Path2D" index="0"]
+speed = 0.15
+
+[node name="Seakorv" parent="Path2D/PathFollow2D" index="0"]
+scale = Vector2(1.4, 1.364)
+health = 10
+new_texture = ExtResource("3_m47my")
+how_many_olives = 35
+olive_bursts = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="Path2D/PathFollow2D/Seakorv" index="7"]
+position = Vector2(-294.487, 30.0586)
+scale = Vector2(0.0741225, 0.0741225)
+texture = ExtResource("4_up3c5")
+
+[node name="JtAttack" type="Timer" parent="." index="8"]
+
+[node name="PrepareforJtTimer" type="Timer" parent="." index="9"]
+wait_time = 0.05
+
+[node name="PrepareforJtTimerAnti" type="Timer" parent="." index="10"]
+wait_time = 0.05
+
+[node name="GoldenMeatBallTimer" parent="." index="11"]
+wait_time = 1.0
+
+[connection signal="timeout" from="JtAttack" to="." method="_on_jt_attack_timeout"]
+[connection signal="timeout" from="PrepareforJtTimer" to="." method="_on_preparefor_jt_timer_timeout"]
+[connection signal="timeout" from="PrepareforJtTimerAnti" to="." method="_on_preparefor_jt_timer_anti_timeout"]

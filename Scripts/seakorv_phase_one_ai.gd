@@ -1,23 +1,29 @@
-extends Node2D
+class_name korvip1 extends Node2D
 
 signal dying(is_dead)
+signal p2event()
 
 @onready var korv_spawn = $SeakorvSpawn
 @onready var korvi = $Path2D/PathFollow2D/Seakorv
 @onready var modulator_timer = $ModulatorTimer
+## added olives, stews and golden meatballs. Foodcontainer might be better name but whatever
 @onready var bullet_container = $Olive_container
 @onready var mini_boss_container = $MiniBossContainer
 @onready var teleport_timer = $TeleportTimer
 @onready var thin_spawner_timer = $ThinSpawnerTimer
 @onready var thin_spawn = $ThiniSpawn
 @onready var korvi_path = $Path2D/PathFollow2D
+@onready var golden_meatball_timer = $GoldenMeatBallTimer
 
 
 ## Seakorv teleport places during burgundshooting. Its always 3/4 y and teleports in the middle +- 270y
 @export var teleport_places: Array[Vector2] = [Vector2(1550, 600), Vector2(1550, 870), Vector2(1550, 330)]
+## mini_thin, jt and last one is golden meatball lol
 @export var mini_boss_scenes: Array[PackedScene] = []
+@export var how_many_ports = 5
+@export var how_many_mini_thins = 3
+@export var new_attac_place_for_p2 = false
 var teleport_places_size = teleport_places.size()
-
 var shoot_burgund = false
 var teleport_counter = 0
 var modulate_counter = 0
@@ -58,7 +64,10 @@ func _on_burgund_shot(burgund_scene, location):
 
 func _on_korvi_death(is_boss_dead):
 	dying.emit(is_boss_dead)
-	
+	golden_meatball_timer.stop()
+	modulator_timer.stop()
+	teleport_timer.stop()
+	thin_spawner_timer.stop()
 
 func _korvi_start_teleports(start_teleports):
 	teleport_timer.start()
@@ -68,6 +77,8 @@ func _korvi_start_teleports(start_teleports):
 func spawn_mini_boss(index):
 	var miniboss = mini_boss_scenes[index].instantiate()
 	miniboss.global_position = Vector2(0, 0)
+	if miniboss is ThinBoi:
+		miniboss.damage = -1
 	mini_boss_container.add_child(miniboss)
 	
 
@@ -75,7 +86,7 @@ func _mini_boss_death(is_dead):
 	pass
 	
 
-func make_korvi_child(is_korvi_child):
+func make_korvi_child():
 	if !is_korvi_child:
 		#print("korvi lapsetetaan")
 		korvi_path.remove_child(korvi)
@@ -87,26 +98,34 @@ func make_korvi_child(is_korvi_child):
 		korvi_path.add_child(korvi)
 		
 
+func randomize_index():
+	tele_prev_index = tele_index
+	while tele_prev_index == tele_index:
+		tele_index = randi_range(0, teleport_places_size)
+
 
 func _on_teleport_timer_timeout():
-	if teleport_counter <= 4:
+	if teleport_counter < how_many_ports:
 		teleport_counter += 1
-		tele_prev_index = tele_index
-		while tele_prev_index == tele_index:
-			tele_index = randi_range(0, teleport_places_size)
+		randomize_index()
 		modulator_timer.start()
 		if !is_korvi_child:
-			make_korvi_child(is_korvi_child)
+			make_korvi_child()
 			is_korvi_child = true
 		korvi.position = teleport_places[tele_index-1]
-	if teleport_counter >= 5:
+	if teleport_counter >= how_many_ports:
 		modulator_timer.stop()
 		teleport_counter = 0
 		teleport_timer.stop()
 		thin_spawner_timer.start()
-		korvi.olive_timer.start()
-		make_korvi_child(is_korvi_child)
-		is_korvi_child = false
+		tele_index = 0
+		tele_prev_index = 0
+		if !new_attac_place_for_p2:
+			korvi.olive_timer.start()
+			make_korvi_child()
+			is_korvi_child = false
+		else:
+			p2event.emit()
 	
 
 func _on_modulator_timer_timeout():
@@ -130,7 +149,16 @@ func _on_modulator_timer_timeout():
 func _on_thin_spawner_timer_timeout():
 	minithin_counter += 1
 	spawn_mini_boss(0)
-	if minithin_counter >= 3:
+	if minithin_counter >= how_many_mini_thins:
 		minithin_counter = 0
 		thin_spawner_timer.stop()
 	
+
+
+func _on_golden_meat_ball_timer_timeout():
+	var gb = mini_boss_scenes[2].instantiate()
+	gb.global_position = food_spawn_location()
+	bullet_container.add_child(gb)
+
+func food_spawn_location():
+	return Vector2(2000, randf_range(50,1030))

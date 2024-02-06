@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5otqsp6rdtx4"]
+[gd_scene load_steps=7 format=3 uid="uid://c5otqsp6rdtx4"]
 
 [ext_resource type="Script" path="res://Scripts/seakorv_phase_one_ai.gd" id="1_6lw13"]
 [ext_resource type="PackedScene" uid="uid://bw6xrn5gswyxd" path="res://Scenes/mini_thini_ai.tscn" id="2_5ouf7"]
 [ext_resource type="PackedScene" uid="uid://u244h2j2y1vq" path="res://Scenes/seakorv.tscn" id="2_6aagc"]
+[ext_resource type="PackedScene" uid="uid://bgugebki5dji7" path="res://Scenes/golden_meatball.tscn" id="3_rggdm"]
 [ext_resource type="Script" path="res://Scripts/KorvPathPhaseOne.gd" id="3_rry3m"]
 
 [sub_resource type="Curve2D" id="Curve2D_gu4fc"]
@@ -13,7 +14,7 @@ point_count = 10
 
 [node name="SeakorvPhaseOneAi" type="Node2D"]
 script = ExtResource("1_6lw13")
-mini_boss_scenes = Array[PackedScene]([ExtResource("2_5ouf7"), null])
+mini_boss_scenes = Array[PackedScene]([ExtResource("2_5ouf7"), null, ExtResource("3_rggdm")])
 
 [node name="Olive_container" type="Node2D" parent="."]
 
@@ -49,7 +50,12 @@ speed = 0.1
 position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(1.24945, 1.21687)
 
+[node name="GoldenMeatBallTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_timer_based_movement_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
 [connection signal="timeout" from="ModulatorTimer" to="." method="_on_modulator_timer_timeout"]
 [connection signal="timeout" from="ThinSpawnerTimer" to="." method="_on_thin_spawner_timer_timeout"]
+[connection signal="timeout" from="GoldenMeatBallTimer" to="." method="_on_golden_meat_ball_timer_timeout"]

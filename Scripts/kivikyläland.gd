@@ -42,9 +42,9 @@ func _on_player_gee_shot(gee_scene, location):
 #Timer for first food spawns before Rixa
 func _on_food_spawn_timer_one_timeout():
 	#test
-	#if how_many_food == 0:
+	if how_many_food == 0:
 	#	spawn_boss(3)
-	#	timer1.stop()
+		timer1.stop()
 	#	timer4.start()
 	# 
 	how_many_food += 1

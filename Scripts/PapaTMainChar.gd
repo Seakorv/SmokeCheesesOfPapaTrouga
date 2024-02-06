@@ -7,7 +7,7 @@ const SPEED = 1000.0
 @onready var muzzle = $Muzzle
 @onready var healthbar = $hpBar
 ## Player health
-@export var maxHealth = 10
+@export var maxHealth = 1000
 var health = maxHealth
 
 var gee_scene = preload("res://Scenes/gee_bullet.tscn")
