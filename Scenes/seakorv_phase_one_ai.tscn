@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5otqsp6rdtx4"]
+
+[ext_resource type="Script" path="res://Scripts/seakorv_phase_one_ai.gd" id="1_6lw13"]
+[ext_resource type="PackedScene" uid="uid://u244h2j2y1vq" path="res://Scenes/seakorv.tscn" id="2_6aagc"]
+
+[node name="SeakorvPhaseOneAi" type="Node2D"]
+script = ExtResource("1_6lw13")
+
+[node name="Seakorv" parent="." instance=ExtResource("2_6aagc")]
+position = Vector2(1560, 593)
+
+[node name="Olive_container" type="Node2D" parent="."]
+
+[node name="TimerBasedMovement" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerBasedMovement" to="." method="_on_timer_based_movement_timeout"]

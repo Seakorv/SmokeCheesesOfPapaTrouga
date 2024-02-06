@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://u244h2j2y1vq"]
+
+[ext_resource type="Texture2D" uid="uid://bmc35wka2cy5h" path="res://Assets/Characters/Seakorv masked.png" id="1_0t0mo"]
+[ext_resource type="Script" path="res://Scripts/seakorv.gd" id="1_j66hy"]
+
+[node name="Seakorv" type="Area2D"]
+script = ExtResource("1_j66hy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0t0mo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -221, -1, -229, 14, -237, 38, -242, 74, -247, 106, -250, 144, -249, 182, -244, 218, -231, 250, -210, 273, -184, 286, -162, 291, -144, 295, -126, 297, -108, 295, -81, 285, -49, 271, -27, 249, -2, 228, 16, 201, 31, 158, 50, 108, 67, 51, 81, -19, 96, -71, 104, -82, 104, -90, 103, -106, 95, -133, 83, -149, 77, -171, 73, -193, 71, -220, 71, -236, 75, -254, 80, -271, 86, -287, 89, -300, 80, -309, 62, -314, 50, -311, 34, -304, 21, -290, 6, -272, -9, -253, -21, -225, -37, -188, -50, -165, -57, -138, -62, -110, -63, -91, -60, -76, -55, -69, -53, -37, -53, -6, -55, 28, -57, 61, -64, 88, -74, 104, -84, 115, -94, 123, -105, 128, -122, 137, -137, 119, -140, 91, -145, 61, -154, 33, -166, 1, -189, -9, -203, -11, -213)
+
+[node name="Muzzzle1" type="Marker2D" parent="."]
+position = Vector2(-315, 54)
+
+[node name="Muzzzle2" type="Marker2D" parent="."]
+position = Vector2(-12, -212)
+
+[node name="OliveTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Shoot2timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="OliveTimer" to="." method="_on_olive_timer_timeout"]

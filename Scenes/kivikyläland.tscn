@@ -45,8 +45,8 @@ position = Vector2(150, 540)
 
 [node name="BossContainer" type="Node2D" parent="."]
 
-[connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_bad_food_spawn_timer_timeout"]
 [connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_food_spawn_timer_one_timeout"]
+[connection signal="timeout" from="FoodSpawnTimerOne" to="." method="_on_bad_food_spawn_timer_timeout"]
 [connection signal="timeout" from="FoodSpawnTimerTwo" to="." method="_on_food_spawn_timer_two_timeout"]
 [connection signal="timeout" from="FoodSpawnTimerThree" to="." method="_on_food_spawn_timer_three_timeout"]
 [connection signal="timeout" from="FoodSpawnTimerFour" to="." method="_on_food_spawn_timer_four_timeout"]

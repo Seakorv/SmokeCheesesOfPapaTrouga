@@ -146,7 +146,7 @@ func _on_food_spawn_timer_three_timeout():
 
 func _on_food_spawn_timer_four_timeout():
 	how_many_food += 1
-	spawn_food(40, 20, 15, 10, 5, 7, 3, 1.6)
+	spawn_food(40, 20, 15, 10, 5, 7, 3, 1.45)
 	if how_many_food == 10:
 		for n in 4:
 			spawn_stew(2)
@@ -156,7 +156,7 @@ func _on_food_spawn_timer_four_timeout():
 	if how_many_food == 140:
 		for n in 6:
 			spawn_stew(2)
-	if how_many_food == 160:
+	if how_many_food == 155:
 		timer4.stop()
 		spawn_boss(4)
 		how_many_food = 0
