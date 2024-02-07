@@ -1,0 +1,11 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtiqgs8dt7dmv"]
+
+[ext_resource type="Script" path="res://Scripts/test_scene.gd" id="1_7ybm3"]
+[ext_resource type="PackedScene" uid="uid://dcnvcr8n1ikfp" path="res://Scenes/korv_boss_start_cutscene.tscn" id="2_conqf"]
+[ext_resource type="PackedScene" uid="uid://c5otqsp6rdtx4" path="res://Scenes/seakorv_phase_one_ai.tscn" id="3_s8i7o"]
+[ext_resource type="PackedScene" uid="uid://c0avl0t83anq" path="res://Scenes/korv_phase_transition_cutscene.tscn" id="4_dh47k"]
+[ext_resource type="PackedScene" uid="uid://rdmaiom0dxob" path="res://Scenes/seakorv_phase_two_ai.tscn" id="5_unf3u"]
+
+[node name="KorvBossScene" type="Node2D"]
+script = ExtResource("1_7ybm3")
+scene_array = Array[PackedScene]([ExtResource("2_conqf"), ExtResource("3_s8i7o"), ExtResource("4_dh47k"), ExtResource("5_unf3u")])

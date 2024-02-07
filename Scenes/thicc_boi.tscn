@@ -7,7 +7,7 @@
 [node name="ThiccBoi" instance=ExtResource("1_g3d4h")]
 script = ExtResource("2_ar0np")
 damage = -5
-health = 60
+health = 1
 speed = 750
 
 [node name="Sprite2D" parent="." index="0"]

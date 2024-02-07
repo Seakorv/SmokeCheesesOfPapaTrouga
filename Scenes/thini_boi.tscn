@@ -6,7 +6,7 @@
 
 [node name="ThiniBoi" instance=ExtResource("1_oj6p2")]
 script = ExtResource("2_xrkv5")
-health = 25
+health = 1
 speed = 200
 
 [node name="Sprite2D" parent="." index="0"]

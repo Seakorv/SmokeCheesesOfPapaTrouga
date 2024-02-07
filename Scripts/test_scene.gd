@@ -1,15 +1,15 @@
-extends Node2D
+class_name Final_Boss extends Node2D
 
 @export var scene_array: Array[PackedScene] = []
 var current_scene
 
-@onready var player = $PapaT
-@onready var pepe_make_ase = $PepeMakeAse
+#@onready var player = $PapaT
+#@onready var pepe_make_ase = $PepeMakeAse
 #var cutscene = preload("res://Scenes/korv_phase_transition_cutscene.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player.pepeM_shot.connect(_on_player_gee_shot)  
+	#player.pepeM_shot.connect(_on_player_gee_shot)  
 	current_scene = scene_array[0].instantiate()
 	add_child(current_scene)
 	#if scenecounter == 0:
@@ -44,8 +44,10 @@ func _scene3_done(anim_finished):
 func _scene4_done(is_boss_deads):
 	pass
 
-
+#func for player shooting, testing purposes
+"""
 func _on_player_gee_shot(gee_scene, location):
 	var gee = gee_scene.instantiate()
 	gee.global_position = location
 	pepe_make_ase.add_child(gee)
+"""

@@ -1,4 +1,4 @@
-extends BossAmmo
+class_name Jotunn_ball extends BossAmmo
 
 @export var speed = 300
 

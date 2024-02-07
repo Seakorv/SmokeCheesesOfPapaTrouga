@@ -9,6 +9,7 @@ extends Node2D
 @onready var timer2 = $FoodSpawnTimerTwo
 @onready var timer3 = $FoodSpawnTimerThree
 @onready var timer4 = $FoodSpawnTimerFour
+@onready var timer5 = $FoodSpawnTimerFive
 @onready var food_container = $FoodContainer
 @onready var boss_container = $BossContainer
 
@@ -16,7 +17,6 @@ extends Node2D
 var how_many_food = 0
 var player = null
 var boss = null
- 
 
 
 func _ready():
@@ -42,16 +42,16 @@ func _on_player_gee_shot(gee_scene, location):
 #Timer for first food spawns before Rixa
 func _on_food_spawn_timer_one_timeout():
 	#test
-	if how_many_food == 0:
+	#if how_many_food == 0:
 	#	spawn_boss(3)
-		timer1.stop()
+	# 	timer1.stop()
 	#	timer4.start()
 	# 
 	how_many_food += 1
 	spawn_food(30, 10, 30, 15, 8, 6, 1, 1)
 	if how_many_food == 10: 
 		spawn_stew(1)
-	if how_many_food == 20:
+	if how_many_food == 1: #20
 		timer1.stop()
 		spawn_boss(1)
 		how_many_food = 0
@@ -68,14 +68,19 @@ func spawn_food(olives: int, jelly_onions: int, meatballs: int, wieners: int, ke
 
 # Spawn boss by its index. 0 is burgund stew, 1 is Rixa etc.
 func spawn_boss(boss_index):
-	boss = bossScenes[boss_index].instantiate() 
+	boss = bossScenes[boss_index].instantiate()
 	boss.dying.connect(_boss_death)
 	boss_container.add_child(boss)
-	
+		
+
+func spawn_final_scene():
+	var scene = bossScenes[5].instantiate()
+	boss_container.add_child(scene)
 
 func _boss_death(is_dead):
 	if is_dead:
 		timer_starter(boss.get_index()+1)
+	
 
 
 # Giving an int from zero to six, which food will be chosen. Give percentages in parameters. Don't exeed 100 lol
@@ -112,8 +117,8 @@ func food_spawn_location():
 
 
 func timer_starter(which_timer):
-	var timers_array = [timer1, timer2, timer3, timer4]
-	timers_array[which_timer].start()
+	var timers_array = [timer1, timer2, timer3, timer4, timer5]
+	timers_array[which_timer].start()  
 
 
 func _on_food_spawn_timer_two_timeout():
@@ -121,7 +126,7 @@ func _on_food_spawn_timer_two_timeout():
 	spawn_food(33, 12, 25, 15, 8, 6, 1, 1.1)
 	if how_many_food == 20 or how_many_food == 40: 
 		spawn_stew(1.3)
-	if how_many_food == 50:
+	if how_many_food == 1: #50
 		timer2.stop()
 		spawn_boss(2)
 		how_many_food = 0
@@ -138,7 +143,7 @@ func _on_food_spawn_timer_three_timeout():
 	if how_many_food == 90:
 		for n in 3:
 			spawn_stew(1.7)
-	if how_many_food == 100:
+	if how_many_food == 1: #100
 		timer3.stop() 
 		spawn_boss(3)
 		how_many_food = 0
@@ -156,9 +161,45 @@ func _on_food_spawn_timer_four_timeout():
 	if how_many_food == 140:
 		for n in 6:
 			spawn_stew(2)
-	if how_many_food == 155:
+	if how_many_food == 1: #155
 		timer4.stop()
 		spawn_boss(4)
 		how_many_food = 0
 
 
+func _on_food_spawn_timer_five_timeout():
+	how_many_food += 1
+	spawn_food(45,25,10,5,5,5,5,1.6)
+	if how_many_food == 5:
+		spawn_food_wall(0, 0.7)
+	if how_many_food == 20:
+		for n in 3:
+			spawn_stew(2)
+	if how_many_food == 50:
+		spawn_food_wall(2, 2)
+	if how_many_food == 70:
+		for n in 5:
+			spawn_stew(2)
+	if how_many_food == 90:
+		spawn_food_wall(1, 1.5)
+	if how_many_food == 120:
+		spawn_food_wall(1, 1.3)
+	if how_many_food == 140:
+		spawn_food_wall(0, 1.5)
+	if how_many_food == 170:
+		for n in 100:
+			spawn_stew(0.8 )
+	if how_many_food >= 200:
+		pass
+	if how_many_food == 250:
+		timer5.stop()
+		spawn_final_scene()
+		how_many_food = 0
+
+#function which spawns a food wall with 500 food units. which_food is the index which will choose the food and speedmultiplier is self explanatory
+func spawn_food_wall(which_food, speedmultiplier):
+	for n in 500:
+		var foodwallfood = foodScenes[which_food].instantiate()
+		foodwallfood.speed_multiplier = speedmultiplier
+		foodwallfood.global_position = food_spawn_location()
+		food_container.add_child(foodwallfood)

@@ -18,7 +18,7 @@ func _on_area_entered(area):
 	if area is Boss:
 		area.im_hurt()
 		queue_free()
-	if area is BossAmmo:
+	if area is Jotunn_ball:
 		queue_free()
 	if area is Burgund_Stew:
 		area.take_damage()
