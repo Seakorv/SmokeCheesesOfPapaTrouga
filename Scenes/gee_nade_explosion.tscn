@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsultw2nxbp0d"]
+
+[ext_resource type="Script" path="res://Scripts/gee_nade_explosion.gd" id="1_ciymg"]
+[ext_resource type="Texture2D" uid="uid://d27bf05vlbroh" path="res://icon.svg" id="1_lgq2o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8eipe"]
+radius = 4.12311
+
+[node name="GeeNadeExplosion" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ciymg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(0.0859375, 0.0859375)
+texture = ExtResource("1_lgq2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8eipe")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

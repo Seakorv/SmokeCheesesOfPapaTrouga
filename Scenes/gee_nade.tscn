@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb7pgy7vivaum"]
+
+[ext_resource type="Texture2D" uid="uid://cd0fhnxols6yw" path="res://Assets/Projectiles/GeeNaatti.png" id="1_hutwb"]
+[ext_resource type="Script" path="res://Scripts/gee_nade.gd" id="1_u4ue8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cg385"]
+radius = 36.6733
+height = 107.465
+
+[node name="GeeNade" type="Area2D"]
+collision_layer = 4
+collision_mask = 26
+script = ExtResource("1_u4ue8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.12963, 0.12963)
+texture = ExtResource("1_hutwb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+rotation = -0.157463
+shape = SubResource("CapsuleShape2D_cg385")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-62, -0.5)
+scale = Vector2(1, 4.85)
+
+[node name="ExplodeHere" type="Marker2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

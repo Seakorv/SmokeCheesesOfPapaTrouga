@@ -12,8 +12,8 @@ func _on_lorenz_timer_timeout():
 	lorenz_shot.emit(lorenz_scene, muzzle.global_position)
 
 
-func im_hurt():
-	health -= 1
+func im_hurt(damage):
+	health -= damage
 	if health <= 0:
 		death()
 

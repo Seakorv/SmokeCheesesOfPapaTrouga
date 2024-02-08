@@ -26,7 +26,8 @@ func _on_body_entered(body):
 		body.die()
 		
 
-func take_damage():
-	health -= 1
+##Only take damage so the parameter damage should be always given positive. Although negative values would heal and work 
+func take_damage(damage):
+	health -= damage
 	if health <= 0:
 		die()

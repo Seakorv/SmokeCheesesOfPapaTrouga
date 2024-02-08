@@ -27,8 +27,8 @@ func _on_shoot_timer_timeout():
 		shootburst = 0
 
 
-func im_hurt():
-	health -= 1
+func im_hurt(damage):
+	health -= damage
 	if health <= 0:
 		death()
 

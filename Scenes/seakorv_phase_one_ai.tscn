@@ -54,8 +54,8 @@ scale = Vector2(1.24945, 1.21687)
 wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_timer_based_movement_timeout"]
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
 [connection signal="timeout" from="ModulatorTimer" to="." method="_on_modulator_timer_timeout"]
 [connection signal="timeout" from="ThinSpawnerTimer" to="." method="_on_thin_spawner_timer_timeout"]
 [connection signal="timeout" from="GoldenMeatBallTimer" to="." method="_on_golden_meat_ball_timer_timeout"]

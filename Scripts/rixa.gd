@@ -21,8 +21,8 @@ func _on_shoot_timer_timeout():
 	jotunn_shot.emit(jotunn_scene, muzzle.global_position)
 
 
-func im_hurt():
-	health -= 1
+func im_hurt(damage):
+	health -= damage
 	if health <= 0:
 		death()
 

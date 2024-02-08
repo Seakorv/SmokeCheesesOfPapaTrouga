@@ -1,20 +1,25 @@
 class_name PapaT extends CharacterBody2D
 
 signal pepeM_shot(gee_scene, location)
+signal geenade_thrown(gee_nade_scene, location)
 
 const SPEED = 1000.0
 
 @onready var muzzle = $Muzzle
+@onready var geenadejuuso_muzzle = $GeeJuusoMuzzle
 @onready var healthbar = $hpBar
 ## Player health
 @export var maxHealth = 1000
 var health = maxHealth
 
 var gee_scene = preload("res://Scenes/gee_bullet.tscn")
+var gee_nade_scene = preload("res://Scenes/gee_nade.tscn")
 
 func _process(delta):
 	if Input.is_action_just_pressed("shoot_pepemake"):
 		shoot()
+	if Input.is_action_just_pressed("shoot_geenade"):
+		throw_gee()
 
 func _physics_process(delta):
 
@@ -45,7 +50,11 @@ func take_damage_or_heal(damage):
 
 func shoot():
 	pepeM_shot.emit(gee_scene, muzzle.global_position)
-	
+
+
+func throw_gee():
+	geenade_thrown.emit(gee_nade_scene, geenadejuuso_muzzle.global_position)
+
 
 func die():
 	queue_free()

@@ -44,8 +44,8 @@ func _ready():
 func _process(delta):
 	pass
 
-func im_hurt():
-	health -= 1
+func im_hurt(damage):
+	health -= damage
 	if health <= 0:
 		death()
 		

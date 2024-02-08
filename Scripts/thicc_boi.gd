@@ -23,8 +23,8 @@ func _on_body_entered(body):
 		body.take_damage_or_heal(damage)
 
 
-func im_hurt():
-	health -= 1
+func im_hurt(damage):
+	health -= damage
 	random_spawn()
 	if health <= 0:
 		death()

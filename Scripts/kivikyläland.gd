@@ -2,6 +2,8 @@ extends Node2D
 
 @export var foodScenes: Array[PackedScene] = []
 @export var bossScenes: Array[PackedScene] = []
+## How many geenades does PapaT have?
+@export var how_many_geenades = 10
 
 @onready var player_spawn = $SpawnPosition
 @onready var pepe_make_ase = $PepeMakeAse
@@ -24,6 +26,7 @@ func _ready():
 	assert(player!=null)
 	player.global_position = player_spawn.global_position
 	player.pepeM_shot.connect(_on_player_gee_shot)  
+	player.geenade_thrown.connect(_on_player_gee_thrown)
 
 
 func _process(delta):
@@ -37,6 +40,21 @@ func _on_player_gee_shot(gee_scene, location):
 	var gee = gee_scene.instantiate()
 	gee.global_position = location
 	pepe_make_ase.add_child(gee)
+
+
+func _on_player_gee_thrown(gee_nade_scene, location):
+	if how_many_geenades > 0:
+		how_many_geenades -= 1
+		var geenade = gee_nade_scene.instantiate()
+		geenade.global_position = location
+		geenade.geexplode.connect(_on_geexplosion)
+		pepe_make_ase.add_child(geenade)
+
+
+func _on_geexplosion(explosion_scene, location):
+	var geexplosion = explosion_scene.instantiate()
+	geexplosion.global_position = location
+	pepe_make_ase.add_child(geexplosion)
 
 
 #Timer for first food spawns before Rixa
@@ -78,6 +96,7 @@ func spawn_final_scene():
 	boss_container.add_child(scene)
 
 func _boss_death(is_dead):
+	how_many_geenades += 3
 	if is_dead:
 		timer_starter(boss.get_index()+1)
 	
@@ -169,7 +188,8 @@ func _on_food_spawn_timer_four_timeout():
 
 func _on_food_spawn_timer_five_timeout():
 	how_many_food += 1
-	spawn_food(45,25,10,5,5,5,5,1.6)
+	if how_many_food < 200:
+		spawn_food(45,25,10,5,5,5,5,1.6)
 	if how_many_food == 5:
 		spawn_food_wall(0, 0.7)
 	if how_many_food == 20:
@@ -187,8 +207,8 @@ func _on_food_spawn_timer_five_timeout():
 	if how_many_food == 140:
 		spawn_food_wall(0, 1.5)
 	if how_many_food == 170:
-		for n in 100:
-			spawn_stew(0.8 )
+		for n in 1000:
+			spawn_stew(0.8)
 	if how_many_food >= 200:
 		pass
 	if how_many_food == 250:
