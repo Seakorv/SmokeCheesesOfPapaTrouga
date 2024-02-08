@@ -36,6 +36,10 @@ wait_time = 0.05
 [node name="GoldenMeatBallTimer" parent="." index="11"]
 wait_time = 1.0
 
+[node name="MiniThiniDeathTimer" type="Timer" parent="." index="12"]
+wait_time = 0.5
+
 [connection signal="timeout" from="JtAttack" to="." method="_on_jt_attack_timeout"]
 [connection signal="timeout" from="PrepareforJtTimer" to="." method="_on_preparefor_jt_timer_timeout"]
 [connection signal="timeout" from="PrepareforJtTimerAnti" to="." method="_on_preparefor_jt_timer_anti_timeout"]
+[connection signal="timeout" from="MiniThiniDeathTimer" to="." method="_on_mini_thini_death_timer_timeout"]

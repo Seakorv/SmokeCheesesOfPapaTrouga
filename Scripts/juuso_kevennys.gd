@@ -24,9 +24,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_area_entered(area):
 	if area is Food or Burgund_Stew:
-		if area != korvip1:
-			area.die()
-			eat_food()
+		area.die() 
+		eat_food()
 		if !timer_started:
 			print("timer starting")
 			timer_started = true

@@ -11,9 +11,11 @@ var rotate_scale_counter = 0
 @onready var jt_attack_timer = $JtAttack
 @onready var prep_for_jt_timer = $PrepareforJtTimer
 @onready var anti_prep_for_jt_timer = $PrepareforJtTimerAnti
+@onready var mini_thini_death_timer = $MiniThiniDeathTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	korvi.p2death = true
 	korvi.olives_shot.connect(_on_olives_shot)
 	korvi.burgund_shot.connect(_on_burgund_shot)
 	korvi.olives_has_been_shot.connect(_korvi_start_teleports)
@@ -38,6 +40,7 @@ func _on_korvi_death2(is_boss_dead):
 	jt_attack_timer.stop()
 	prep_for_jt_timer.stop()
 	anti_prep_for_jt_timer.stop()
+	mini_thini_death_timer.start()
 
 func _on_jt_attack_timeout():
 	eager_edge_counter += 1
@@ -90,3 +93,9 @@ func _on_preparefor_jt_timer_anti_timeout():
 		korvi.olive_timer.start()
 		make_korvi_child()
 		is_korvi_child = false
+
+
+func _on_mini_thini_death_timer_timeout():
+	var miniboss = mini_boss_scenes[0].instantiate()
+	miniboss.global_position = Vector2(0, 0)
+	mini_boss_container.add_child(miniboss)

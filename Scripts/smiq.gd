@@ -35,6 +35,7 @@ func im_hurt(damage):
 
 func death():
 	queue_free()
+	boss_explosion()
 	is_dead = true
 	dying_event.emit(is_dead)
 	shoot_timer.stop()

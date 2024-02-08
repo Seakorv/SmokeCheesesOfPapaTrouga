@@ -5,6 +5,7 @@ extends Node2D
 ## How many geenades does PapaT have?
 @export var how_many_geenades = 10
 
+
 @onready var player_spawn = $SpawnPosition
 @onready var pepe_make_ase = $PepeMakeAse
 @onready var timer1 = $FoodSpawnTimerOne
@@ -14,6 +15,7 @@ extends Node2D
 @onready var timer5 = $FoodSpawnTimerFive
 @onready var food_container = $FoodContainer
 @onready var boss_container = $BossContainer
+
 
 
 var how_many_food = 0
@@ -69,11 +71,11 @@ func _on_player_juuso_thrown(juuso_scene, location):
 #Timer for first food spawns before Rixa
 func _on_food_spawn_timer_one_timeout():
 	#test
-	#if how_many_food == 0:
+	if how_many_food == 0:
 		#spawn_juuso()
-		#spawn_boss(3)
-		#timer1.stop()
-		#timer5.start()
+		#spawn_boss(1)
+		timer1.stop()
+		timer5.start()
 		#spawn_juuso()
 	# 
 	how_many_food += 1
@@ -238,7 +240,7 @@ func _on_food_spawn_timer_five_timeout():
 			spawn_stew(0.8)
 	if how_many_food >= 200:
 		pass
-	if how_many_food == 250:
+	if how_many_food == 2:
 		timer5.stop()
 		spawn_final_scene()
 		how_many_food = 0

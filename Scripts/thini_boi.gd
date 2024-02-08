@@ -20,6 +20,7 @@ func im_hurt(damage):
 
 func death():
 	queue_free()
+	boss_explosion()
 	lorenz_timer.stop()
 	is_dead = true
 	dying_event.emit(is_dead)

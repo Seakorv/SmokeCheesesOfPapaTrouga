@@ -2,6 +2,7 @@ class_name Seakorv extends Boss
 
 var olive_scene = preload("res://Scenes/olives.tscn")
 var burgund_scene = preload("res://Scenes/burgund_stew.tscn")
+var p2death = false
 
 signal olives_shot(olive_scene, location)
 signal burgund_shot(burgund_scene, location)
@@ -52,6 +53,8 @@ func im_hurt(damage):
 
 func death():
 	queue_free()
+	if p2death:
+		boss_explosion()
 	is_dead = true
 	dying_event.emit(is_dead)
 	
