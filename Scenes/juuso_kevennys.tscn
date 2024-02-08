@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://uhddox8bylat"]
+
+[ext_resource type="Script" path="res://Scripts/juuso_kevennys.gd" id="1_dn0ty"]
+[ext_resource type="Texture2D" uid="uid://3es5x0bie57s" path="res://Assets/Projectiles/JuusoPNG.png" id="2_mtmub"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8egu8"]
+radius = 49.0
+height = 166.0
+
+[node name="JuusoKevennys" type="Area2D"]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("1_dn0ty")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.183579, 0.183579)
+texture = ExtResource("2_mtmub")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = -0.0768409
+shape = SubResource("CapsuleShape2D_8egu8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-76, 5)
+scale = Vector2(0.4, 6.4)
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

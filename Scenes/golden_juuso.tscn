@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2u3gqweuncx4"]
+
+[ext_resource type="Script" path="res://Scripts/golden_juuso.gd" id="1_i2nw8"]
+[ext_resource type="PackedScene" uid="uid://d3jwrnmenllmx" path="res://Scenes/food.tscn" id="1_p7ca6"]
+[ext_resource type="Texture2D" uid="uid://dy6vrriiel8qj" path="res://Assets/Projectiles/JuusoGoldenPNG.png" id="2_dp7n4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b7k4e"]
+radius = 37.0
+height = 124.396
+
+[node name="GoldenJuuso" instance=ExtResource("1_p7ca6")]
+script = ExtResource("1_i2nw8")
+damage = 0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_dp7n4")
+flip_h = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 0.0734452
+shape = SubResource("CapsuleShape2D_b7k4e")

@@ -27,6 +27,7 @@ func _ready():
 	player.global_position = player_spawn.global_position
 	player.pepeM_shot.connect(_on_player_gee_shot)  
 	player.geenade_thrown.connect(_on_player_gee_thrown)
+	player.juuso_thrown.connect(_on_player_juuso_thrown)
 
 
 func _process(delta):
@@ -57,19 +58,29 @@ func _on_geexplosion(explosion_scene, location):
 	pepe_make_ase.add_child(geexplosion)
 
 
+func _on_player_juuso_thrown(juuso_scene, location):
+	if player.golden_juusos > 0:
+		var juuso = juuso_scene.instantiate()
+		juuso.global_position = location
+		pepe_make_ase.add_child(juuso)
+		player.golden_juusos -= 1
+
+
 #Timer for first food spawns before Rixa
 func _on_food_spawn_timer_one_timeout():
 	#test
 	#if how_many_food == 0:
-	#	spawn_boss(3)
-	# 	timer1.stop()
-	#	timer4.start()
+		#spawn_juuso()
+		#spawn_boss(3)
+		#timer1.stop()
+		#timer5.start()
+		#spawn_juuso()
 	# 
 	how_many_food += 1
 	spawn_food(30, 10, 30, 15, 8, 6, 1, 1)
 	if how_many_food == 10: 
 		spawn_stew(1)
-	if how_many_food == 1: #20
+	if how_many_food == 20: #20
 		timer1.stop()
 		spawn_boss(1)
 		how_many_food = 0
@@ -135,6 +146,12 @@ func food_spawn_location():
 	return Vector2(2000, randf_range(50,1030))
 
 
+func spawn_juuso():
+	var gjuuso = foodScenes[7].instantiate()
+	gjuuso.global_position = food_spawn_location()
+	food_container.add_child(gjuuso)
+
+
 func timer_starter(which_timer):
 	var timers_array = [timer1, timer2, timer3, timer4, timer5]
 	timers_array[which_timer].start()  
@@ -145,7 +162,7 @@ func _on_food_spawn_timer_two_timeout():
 	spawn_food(33, 12, 25, 15, 8, 6, 1, 1.1)
 	if how_many_food == 20 or how_many_food == 40: 
 		spawn_stew(1.3)
-	if how_many_food == 1: #50
+	if how_many_food == 50: #50
 		timer2.stop()
 		spawn_boss(2)
 		how_many_food = 0
@@ -162,7 +179,7 @@ func _on_food_spawn_timer_three_timeout():
 	if how_many_food == 90:
 		for n in 3:
 			spawn_stew(1.7)
-	if how_many_food == 1: #100
+	if how_many_food == 100: #100
 		timer3.stop() 
 		spawn_boss(3)
 		how_many_food = 0
@@ -172,15 +189,21 @@ func _on_food_spawn_timer_four_timeout():
 	how_many_food += 1
 	spawn_food(40, 20, 15, 10, 5, 7, 3, 1.45)
 	if how_many_food == 10:
+		spawn_food_wall(2, 1)
 		for n in 4:
 			spawn_stew(2)
+	if how_many_food == 30:
+		spawn_juuso()
 	if how_many_food == 70:
+		spawn_food_wall(1, 0.5)
 		for n in 5:
 			spawn_stew(2)
+	if how_many_food == 100:
+		spawn_food_wall(2, 0.5)
 	if how_many_food == 140:
 		for n in 6:
 			spawn_stew(2)
-	if how_many_food == 1: #155
+	if how_many_food == 155: #155
 		timer4.stop()
 		spawn_boss(4)
 		how_many_food = 0
@@ -195,6 +218,8 @@ func _on_food_spawn_timer_five_timeout():
 	if how_many_food == 20:
 		for n in 3:
 			spawn_stew(2)
+	if how_many_food == 30:
+		spawn_juuso()
 	if how_many_food == 50:
 		spawn_food_wall(2, 2)
 	if how_many_food == 70:
@@ -206,6 +231,8 @@ func _on_food_spawn_timer_five_timeout():
 		spawn_food_wall(1, 1.3)
 	if how_many_food == 140:
 		spawn_food_wall(0, 1.5)
+	if how_many_food == 150:
+		spawn_juuso()
 	if how_many_food == 170:
 		for n in 1000:
 			spawn_stew(0.8)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwcnq84t0llm6"]
+[gd_scene load_steps=17 format=3 uid="uid://cwcnq84t0llm6"]
 
 [ext_resource type="Script" path="res://Scripts/kivikyläland.gd" id="1_f8oof"]
 [ext_resource type="PackedScene" uid="uid://bfmnvh7fn6avc" path="res://Scenes/player.tscn" id="2_d8r7w"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d4iyntemx3mq4" path="res://Scenes/kebab.tscn" id="6_rbx6j"]
 [ext_resource type="PackedScene" uid="uid://o6vcn2416phu" path="res://Scenes/mandarin.tscn" id="7_cb03f"]
 [ext_resource type="PackedScene" uid="uid://bgugebki5dji7" path="res://Scenes/golden_meatball.tscn" id="8_biju8"]
+[ext_resource type="PackedScene" uid="uid://c2u3gqweuncx4" path="res://Scenes/golden_juuso.tscn" id="9_d73ly"]
 [ext_resource type="PackedScene" uid="uid://cl7gef6ncucmy" path="res://Scenes/rix_ai.tscn" id="10_lyykh"]
 [ext_resource type="PackedScene" uid="uid://c6a2mxdpnrkqr" path="res://Scenes/burgund_stew.tscn" id="11_55n1u"]
 [ext_resource type="PackedScene" uid="uid://bclnl5wecvs8j" path="res://Scenes/smiq_ai.tscn" id="11_ll5py"]
@@ -19,7 +20,7 @@
 [node name="Kivikyläland" type="Node2D"]
 rotation = -0.000465051
 script = ExtResource("1_f8oof")
-foodScenes = Array[PackedScene]([ExtResource("2_va0ts"), ExtResource("3_rwdky"), ExtResource("4_4j3as"), ExtResource("5_ixm6y"), ExtResource("6_rbx6j"), ExtResource("7_cb03f"), ExtResource("8_biju8")])
+foodScenes = Array[PackedScene]([ExtResource("2_va0ts"), ExtResource("3_rwdky"), ExtResource("4_4j3as"), ExtResource("5_ixm6y"), ExtResource("6_rbx6j"), ExtResource("7_cb03f"), ExtResource("8_biju8"), ExtResource("9_d73ly")])
 bossScenes = Array[PackedScene]([ExtResource("11_55n1u"), ExtResource("10_lyykh"), ExtResource("11_ll5py"), ExtResource("12_f6bhc"), ExtResource("12_o8gmn"), ExtResource("14_be21v")])
 
 [node name="FoodSpawnTimerOne" type="Timer" parent="."]

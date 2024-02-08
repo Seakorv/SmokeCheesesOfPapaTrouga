@@ -22,7 +22,6 @@ func die():
 func _on_body_entered(body):
 	if body is PapaT:
 		die()
-		body.take_damage_or_heal(damage)
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
