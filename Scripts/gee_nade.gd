@@ -2,6 +2,7 @@ extends Area2D
 
 signal geexplode(explosion_scene, location)
 
+@onready var explosion = preload("res://Scenes/gee_explosion_particle.tscn")
 @onready var explosion_location = $ExplodeHere
 
 @export var speed = 500
@@ -32,5 +33,14 @@ func _on_area_entered(area):
 
 
 func explode():
-	geexplode.emit(explosion_scene, explosion_location.global_position)	
+	geexplode.emit(explosion_scene, explosion_location.global_position)
+	gee_explosion()
 	queue_free()
+	
+
+func gee_explosion():
+	#print("pum")
+	var _particle = explosion.instantiate()
+	_particle.position = global_position
+	_particle.emitting = true
+	get_tree().current_scene.add_child(_particle)

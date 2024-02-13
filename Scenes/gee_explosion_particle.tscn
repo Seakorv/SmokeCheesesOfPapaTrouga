@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://w45poqkierrn"]
+
+[ext_resource type="PackedScene" uid="uid://bwjtjvlobuu3j" path="res://Scenes/explosion_particle.tscn" id="1_51jft"]
+
+[node name="GPUParticles2D" instance=ExtResource("1_51jft")]
+self_modulate = Color(0.392157, 0.372549, 0, 1)
+scale = Vector2(0.5, 0.5)

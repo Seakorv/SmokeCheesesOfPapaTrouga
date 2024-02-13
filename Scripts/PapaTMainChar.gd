@@ -17,6 +17,7 @@ var golden_juusos = 0
 var gee_scene = preload("res://Scenes/gee_bullet.tscn")
 var gee_nade_scene = preload("res://Scenes/gee_nade.tscn")
 var juuso_scene = preload("res://Scenes/juuso_kevennys.tscn")
+var explosion = preload("res://Scenes/papa_explosion_particle.tscn")
 
 func _process(delta):
 	if Input.is_action_just_pressed("shoot_pepemake"):
@@ -66,4 +67,13 @@ func throw_juuso():
 
 
 func die():
+	papa_explosion()
 	queue_free()
+
+
+func papa_explosion():
+	#print("pum")
+	var _particle = explosion.instantiate()
+	_particle.position = global_position
+	_particle.emitting = true
+	get_tree().current_scene.add_child(_particle)

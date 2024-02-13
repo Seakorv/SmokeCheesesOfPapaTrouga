@@ -15,7 +15,7 @@ speed = 0.15
 
 [node name="Seakorv" parent="Path2D/PathFollow2D" index="0"]
 scale = Vector2(1.4, 1.364)
-health = 10
+health = 100
 new_texture = ExtResource("3_m47my")
 how_many_olives = 35
 olive_bursts = 3

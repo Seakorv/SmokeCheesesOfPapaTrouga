@@ -10,7 +10,7 @@ func die():
 
 
 func boss_explosion():
-	print("pum")
+	#print("pum")
 	var _particle = explosion.instantiate()
 	_particle.position = global_position
 	_particle.emitting = true
