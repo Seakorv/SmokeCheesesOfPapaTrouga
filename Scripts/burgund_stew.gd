@@ -1,5 +1,8 @@
 class_name Burgund_Stew extends Area2D
 
+signal killed(points)
+@onready var explosion = preload("res://Scenes/explosion_particle.tscn")
+
 ## Stew's health
 @export var health = 10
 ## Stew's speed
@@ -8,12 +11,15 @@ class_name Burgund_Stew extends Area2D
 @export var speed_multiplier = 1
 ## How many points does the player get for killing this
 @export var points = 100
+var want_particles = true
 
 func _physics_process(delta):
 	global_position.x += -(speed * speed_multiplier) * delta
 
 
 func die():
+	if want_particles:
+		burg_explosion()
 	queue_free()
 	
 
@@ -30,4 +36,13 @@ func _on_body_entered(body):
 func take_damage(damage):
 	health -= damage
 	if health <= 0:
+		killed.emit(points)
 		die()
+
+
+func burg_explosion():
+	#print("pum")
+	var _particle = explosion.instantiate()
+	_particle.position = global_position
+	_particle.emitting = true
+	get_tree().current_scene.add_child(_particle)

@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bre6wbgl1qfmk"
+path="res://.godot/imported/2015 Cruiser Bold.ttf-f264d9e2a82587f0ef61f41d8c52ed82.fontdata"
+
+[deps]
+
+source_file="res://Assets/2015 Cruiser Bold.ttf"
+dest_files=["res://.godot/imported/2015 Cruiser Bold.ttf-f264d9e2a82587f0ef61f41d8c52ed82.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

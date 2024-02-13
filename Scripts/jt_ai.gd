@@ -1,10 +1,12 @@
 extends Node2D
 
-signal dying(is_dead)
+signal dying(is_dead, points)
 
 @onready var boss = $Jt_nd
 @onready var jt_spawn = $JtSpawn
 @onready var timer = $JtEagerEdgeTimer
+
+@export var points := 6000
 ## Position where i want JT to arrive
 var end_position
 ## JT's position
@@ -44,6 +46,6 @@ func _on_jt_eager_edge_timer_timeout():
 
 
 func _on_boss_death(is_boss_dead):
-	dying.emit(is_boss_dead)
+	dying.emit(is_boss_dead, points)
 	boss = null
 	timer.stop()

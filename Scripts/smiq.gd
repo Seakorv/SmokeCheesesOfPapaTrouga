@@ -12,8 +12,6 @@ var shootburst = 0
 @export var health = 40
 ## Boss vector speed
 @export var speed = 500
-## How many points will boss' death give
-@export var score = 2000
 
 
 var vex_scene = preload("res://Scenes/vex_bullet.tscn")

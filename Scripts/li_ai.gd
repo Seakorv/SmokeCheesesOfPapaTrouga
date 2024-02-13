@@ -8,7 +8,9 @@ extends Node2D
 var thin_dead = false
 var thicc_dead = false
 
-signal dying(is_dead)
+signal dying(is_dead, points)
+
+@export var points := 2500
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +32,7 @@ func _on_thin_death(is_boss_dead):
 		thicc.damage *= 2
 		thicc.speed *= 1.5
 	else:
-		dying.emit(is_boss_dead)
+		dying.emit(is_boss_dead, points)
 
 
 func _on_thicc_death(is_boss_dead):
@@ -40,7 +42,7 @@ func _on_thicc_death(is_boss_dead):
 		thin_port_timer.wait_time = 0.5
 		thin.lorenz_timer.wait_time = 0.4
 	else:
-		dying.emit(is_boss_dead)
+		dying.emit(is_boss_dead, points)
 
 func thin_bakris():
 	var x = randi_range(1200, 1800)

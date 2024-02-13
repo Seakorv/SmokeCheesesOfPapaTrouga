@@ -1,5 +1,7 @@
 class_name Food extends Area2D
 
+signal food_eaten(points)
+
 ## The speed of the food
 @export var speed = 500
 ## Is the food good or bad. Write "good" or "bad"
@@ -21,6 +23,7 @@ func die():
 
 func _on_body_entered(body):
 	if body is PapaT:
+		food_eaten.emit(points)
 		die()
 
 

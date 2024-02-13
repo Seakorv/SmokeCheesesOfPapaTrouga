@@ -1,6 +1,9 @@
 class_name Final_Boss extends Node2D
 
+signal game_finished(points)
+
 @export var scene_array: Array[PackedScene] = []
+@export var points := 50000
 var current_scene
 
 #@onready var player = $PapaT
@@ -41,8 +44,9 @@ func _scene3_done(anim_finished):
 	current_scene.dying.connect(_scene4_done)
 
 
-func _scene4_done(is_boss_deads):
-	pass
+func _scene4_done(is_boss_dead):
+	if is_boss_dead:
+		game_finished.emit(points)
 
 #func for player shooting, testing purposes
 """

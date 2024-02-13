@@ -2,7 +2,7 @@ class_name Veljekset_Li extends Boss
 
 @export var health = 50
 @export var speed = 200
-var score = 5000
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -10,8 +10,6 @@ signal jotunn_shot(jotunn_scene, location)
 @export var health = 20
 ## Boss vector speed
 @export var speed = 500
-## How many points will boss' death give
-@export var score = 1000
 
 
 var jotunn_scene = preload("res://Scenes/rixa_bullet.tscn")

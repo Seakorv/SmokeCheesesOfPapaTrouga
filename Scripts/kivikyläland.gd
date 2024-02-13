@@ -3,7 +3,7 @@ extends Node2D
 @export var foodScenes: Array[PackedScene] = []
 @export var bossScenes: Array[PackedScene] = []
 ## How many geenades does PapaT have?
-@export var how_many_geenades = 10
+@export var how_many_geenades := 10
 
 
 @onready var player_spawn = $SpawnPosition
@@ -15,15 +15,19 @@ extends Node2D
 @onready var timer5 = $FoodSpawnTimerFive
 @onready var food_container = $FoodContainer
 @onready var boss_container = $BossContainer
+@onready var hud = $UILayer/HUD
 
-
-
-var how_many_food = 0
+var score := 0:
+	set(value):
+		score = value
+		hud.score = score
+var how_many_food := 0
 var player = null
 var boss = null
 
 
 func _ready():
+	hud.score = 0
 	player = get_tree().get_first_node_in_group("player")
 	assert(player!=null)
 	player.global_position = player_spawn.global_position
@@ -77,6 +81,9 @@ func _on_food_spawn_timer_one_timeout():
 		#timer1.stop()
 		#timer5.start()
 		#spawn_juuso()
+		#spawn_stew(1)
+		#spawn_final_scene()
+		#spawn_stew_wall()
 	# 
 	how_many_food += 1
 	spawn_food(30, 10, 30, 15, 8, 6, 1, 1)
@@ -92,12 +99,18 @@ func _on_food_spawn_timer_one_timeout():
 func spawn_food(olives: int, jelly_onions: int, meatballs: int, wieners: int, kebab: int, mandarin: int, golden_meatball: int, speedmultiplier):
 	var which_food = choose_not_so_randomly_from_seven(olives, jelly_onions, meatballs, wieners, kebab, mandarin, golden_meatball)
 	var food = foodScenes[which_food].instantiate()
+	food.food_eaten.connect(_on_food_eaten)
 	food.speed_multiplier = speedmultiplier
 	food.global_position = food_spawn_location()
 	food_container.add_child(food)
 
 
-# Spawn boss by its index. 0 is burgund stew, 1 is Rixa etc.
+func _on_food_eaten(points):
+	score += points
+	print(score)
+
+
+# Spawn boss by its index. 0 is burgund stew, 1 is Rixa etc. Dont use this to call stews on testing.
 func spawn_boss(boss_index):
 	boss = bossScenes[boss_index].instantiate()
 	boss.dying.connect(_boss_death)
@@ -106,11 +119,20 @@ func spawn_boss(boss_index):
 
 func spawn_final_scene():
 	var scene = bossScenes[5].instantiate()
+	scene.game_finished.connect(_on_game_finished)
 	boss_container.add_child(scene)
 
-func _boss_death(is_dead):
+
+func _on_game_finished(points):
+	score += points
+	print(score)
+
+
+func _boss_death(is_dead, points):
 	how_many_geenades += 3
-	if is_dead:
+	if is_dead: #Relic from a time i didn't know you could emit signals without parameters and do not have the motivation to clean up yet
+		score += points
+		print(score)
 		timer_starter(boss.get_index()+1)
 	
 
@@ -141,8 +163,14 @@ func spawn_stew(how_fast):
 	var stew = bossScenes[0].instantiate()
 	stew.speed_multiplier = how_fast
 	stew.global_position = food_spawn_location()
+	stew.killed.connect(_on_stew_killed)
 	food_container.add_child(stew)
-	
+
+
+func _on_stew_killed(points):
+	score += points
+	print(score)
+
 
 func food_spawn_location():
 	return Vector2(2000, randf_range(50,1030))
@@ -236,8 +264,7 @@ func _on_food_spawn_timer_five_timeout():
 	if how_many_food == 150:
 		spawn_juuso()
 	if how_many_food == 170:
-		for n in 1000:
-			spawn_stew(0.8)
+		spawn_stew_wall()
 	if how_many_food >= 200:
 		pass
 	if how_many_food == 250:
@@ -249,6 +276,20 @@ func _on_food_spawn_timer_five_timeout():
 func spawn_food_wall(which_food, speedmultiplier):
 	for n in 500:
 		var foodwallfood = foodScenes[which_food].instantiate()
+		foodwallfood.food_eaten.connect(_on_food_eaten)
 		foodwallfood.speed_multiplier = speedmultiplier
 		foodwallfood.global_position = food_spawn_location()
 		food_container.add_child(foodwallfood)
+
+
+func spawn_stew_wall():
+	var particles := 0
+	for n in 1000:
+		particles += 1
+		var stew = bossScenes[0].instantiate()
+		if particles % 10 != 0:
+			stew.want_particles = false
+		stew.speed_multiplier = 0.8
+		stew.global_position = food_spawn_location()
+		stew.killed.connect(_on_stew_killed)
+		food_container.add_child(stew)

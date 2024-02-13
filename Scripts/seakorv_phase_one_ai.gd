@@ -15,7 +15,6 @@ signal p2event()
 @onready var korvi_path = $Path2D/PathFollow2D
 @onready var golden_meatball_timer = $GoldenMeatBallTimer
 
-
 ## Seakorv teleport places during burgundshooting. Its always 3/4 y and teleports in the middle +- 270y
 @export var teleport_places: Array[Vector2] = [Vector2(1550, 600), Vector2(1550, 870), Vector2(1550, 330)]
 ## mini_thin, jt and last one is golden meatball lol
